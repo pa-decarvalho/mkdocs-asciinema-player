@@ -1,0 +1,42 @@
+[project]
+name = "mkdocs-asciinema-player"
+version = "0.0.0"
+description = "A Mkdocs Plugin to include asciinema player in your documentation."
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Operating System :: POSIX",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: System Administrators",
+  "Topic :: Software Development :: Build Tools",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Utilities",
+  "Topic :: Software Development :: Documentation",
+]
+dependencies = [
+  "mkdocs==1.5.3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "flake8==6.0.0",
+  "yamllint==1.32.0",
+  "pytest==7.4.0",
+  "pre-commit==3.3.3",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
+"Bug Reports" = "https://github.com/pa-decarvalho/mkdocs-asciinema-player/issues"
+"Source" = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
+
+[project.entry-points."mkdocs.plugins"]
+mkdocs-asciinema-player = "mkdocs_asciinema_player.plugin:AsciinemaPlayerPlugin"
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
