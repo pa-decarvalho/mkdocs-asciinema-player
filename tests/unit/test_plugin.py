@@ -10,10 +10,10 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
     def setUp(self):
         with open(TESTDATA_EXPECTED_DATA_FILE, "r") as file:
             file_content = file.read()
-        self.site_url = "https://localhost/example-group/project-name"
         self.src_file = "test.cast"
         self.expected_data = file_content
 
     def test_asciinema_player(self) -> None:
         plugin = AsciinemaPlayerPlugin()
-        self.assertEqual(plugin.asciinema_player(self.site_url, self.src_file), self.expected_data)
+        plugin.config["site_url"] = "https://localhost/example-group/project-name/"
+        self.assertEqual(plugin.asciinema_player(self.src_file), self.expected_data)

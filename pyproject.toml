@@ -35,7 +35,7 @@ dev = [
 "Source" = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
 
 [project.entry-points."mkdocs.plugins"]
-mkdocs-asciinema-player = "mkdocs_asciinema_player.plugin:AsciinemaPlayerPlugin"
+asciinema-player = "mkdocs_asciinema_player.plugin:AsciinemaPlayerPlugin"
 
 [build-system]
 requires = ["setuptools>=43.0.0", "wheel"]
