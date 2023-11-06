@@ -18,7 +18,7 @@ classifiers = [
   "Topic :: Software Development :: Documentation",
 ]
 dependencies = [
-  "mkdocs==1.5.3",
+  "mkdocs>=1.5.3",
 ]
 
 [project.optional-dependencies]
