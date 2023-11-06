@@ -28,6 +28,7 @@ tasks:
   pipeline:
     desc: Simulate pipeline (lint, tests...)
     cmds:
+      - yamllint --config-file .config/linters/yamllint.yml .
       - flake8 --config .config/linters/flake8.ini
       - pytest
 
