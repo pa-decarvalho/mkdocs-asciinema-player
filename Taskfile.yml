@@ -1,0 +1,38 @@
+---
+version: "3"
+
+env:
+  PYTHON: python3.12
+  VENV: .venv
+
+tasks:
+  default:
+    cmds:
+      - task: help
+
+  bootstrap:
+    desc: Bootstrap Python venv (requirements)
+    cmds:
+      - >
+        $PYTHON -m venv $VENV &&
+        source "${VENV}/bin/activate" &&
+        pip install --upgrade pip &&
+        pip install -e .[dev] &&
+        pip install -r tests/integration/requirements.txt
+
+  reinit:
+    desc: Reinitialization Python venv (requirements)
+    cmds:
+      - rm -rf $VENV
+      - task: bootstrap
+
+  pipeline:
+    desc: Simulate pipeline (lint, tests...)
+    cmds:
+      - flake8 --config .config/linters/flake8.ini
+      - pytest
+
+  help:
+    desc: Display help
+    cmds:
+      - task --list
