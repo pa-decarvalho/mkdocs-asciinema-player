@@ -1,7 +1,10 @@
 ---
-site_name: Simple integration
+site_name: Material integration
 site_url: "https://localhost/"
 use_directory_urls: false
+
+theme:
+  name: material
 
 plugins:
   - search
