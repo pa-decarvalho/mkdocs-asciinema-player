@@ -1,4 +1,7 @@
 ---
+image:
+  file: .gitpod/Dockerfile
+
 tasks:
   - name: Init dev env
     command: |
