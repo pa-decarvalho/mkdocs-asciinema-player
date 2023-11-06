@@ -3,7 +3,6 @@ version: "3"
 
 env:
   PYTHON: python3.12
-  VENV: .venv
 
 tasks:
   default:
@@ -14,8 +13,8 @@ tasks:
     desc: Bootstrap Python venv (requirements)
     cmds:
       - >
-        $PYTHON -m venv $VENV &&
-        source "${VENV}/bin/activate" &&
+        $PYTHON -m venv .venv &&
+        source .venv/bin/activate &&
         pip install --upgrade pip &&
         pip install -e .[dev] &&
         pip install -r tests/integration/requirements.txt
@@ -23,7 +22,7 @@ tasks:
   reinit:
     desc: Reinitialization Python venv (requirements)
     cmds:
-      - rm -rf $VENV
+      - rm -rf .venv
       - task: bootstrap
 
   pipeline:
