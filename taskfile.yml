@@ -3,9 +3,11 @@ version: "3"
 
 vars:
   PYTHON: python3.12
+  PYTHON_MIN_VERSION: 3.9
   TASK_MIN_VERSION: 3.32.0
 
 includes:
+  check: .taskfiles/check.yml
   lint: .taskfiles/lint.yml
   test: .taskfiles/test.yml
   update: .taskfiles/update.yml
@@ -17,6 +19,7 @@ tasks:
 
   bootstrap:
     desc: Bootstrap Python venv (requirements)
+    deps: [check:all]
     cmds:
       - >
         {{ .PYTHON }} -m venv .venv &&
