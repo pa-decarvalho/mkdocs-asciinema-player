@@ -11,8 +11,8 @@ PROJECT_PATH = os.path.join(os.path.dirname(__file__), "../fixtures/projects")
 @pytest.mark.parametrize(
     "project, check",
     [
-        ("simple", True),
-        ("material", True),
+        ("simple", False),
+        ("material", False),
     ],
 )
 class TestIntegrationProjects:

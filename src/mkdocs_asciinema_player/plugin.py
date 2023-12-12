@@ -1,25 +1,30 @@
+import re
+from typing import Match
 from jinja2 import Environment, PackageLoader, Template
 from urllib.parse import urlparse
 from mkdocs.plugins import BasePlugin
+from mkdocs_asciinema_player.utils import Utils
 
 
 class AsciinemaPlayerPlugin(BasePlugin):
     def __init__(self) -> None:
         pass
 
-    def asciinema_player(self, src_file: str) -> str:
-        parsed_url = urlparse(self.config["site_url"])
-        env = Environment(
-            loader=PackageLoader("mkdocs_asciinema_player", "templates"),
-            lstrip_blocks=True,
-            trim_blocks=True,
-        )
-        template = env.get_template("asciinema_player.j2")
-        return template.render(url=parsed_url.path, cast_file=src_file)
+    def replace_asciinema_player_match(self, match: Match[str]) -> str:
+        utils = Utils()
+        parsed_json = utils.parse_json(match.group(1))
+        if parsed_json is None:
+            return ""
+        template_data = {
+            "site_url": self.mkdocs_config["site_url"],
+            "cast_file_path": parsed_json["cast_file_path"]
+        }
+        return utils.render_template(template_data)
 
     def on_page_markdown(self, markdown: str, config, **kwargs) -> str:
-        """
-        Render the markdown content using the Jinja2 template engine.
-        """
-        self.config = config
-        return Template(markdown).render(asciinema_player=self.asciinema_player)
+        self.mkdocs_config = config
+        return re.sub(
+            re.compile(r"```asciinema-player\n(.*?)\n```", re.DOTALL),
+            self.replace_asciinema_player_match,
+            markdown
+        )
