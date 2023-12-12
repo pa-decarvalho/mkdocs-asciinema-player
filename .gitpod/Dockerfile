@@ -1,6 +1,6 @@
 FROM gitpod/workspace-full
 
-ARG TASK_VERSION=3.31.0
+ARG TASK_VERSION=3.32.0
 
 USER root
 

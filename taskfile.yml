@@ -3,10 +3,12 @@ version: "3"
 
 vars:
   PYTHON: python3.12
+  TASK_MIN_VERSION: 3.32.0
 
 includes:
   lint: .taskfiles/lint.yml
   test: .taskfiles/test.yml
+  update: .taskfiles/update.yml
 
 tasks:
   default:

@@ -1,0 +1,14 @@
+---
+version: "3"
+
+tasks:
+  gitpod-dockerfile:
+    desc: Update dsfr version
+    cmds:
+      - |
+        sed -i 's/TASK_VERSION=.*/TASK_VERSION={{ .TASK_MIN_VERSION }}/' .gitpod/Dockerfile
+
+  all:
+    desc: Run all updates
+    cmds:
+      - task: gitpod-dockerfile
