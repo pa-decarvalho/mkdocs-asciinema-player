@@ -1,0 +1,7 @@
+{
+    "profile": "jinja",
+    "use_gitignore": true,
+    "per-file-ignores": {
+        "src/mkdocs_asciinema_player/templates/asciinema_player.html": "H021"
+    }
+}

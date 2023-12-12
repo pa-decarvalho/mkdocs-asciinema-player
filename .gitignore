@@ -4,3 +4,4 @@ mkdocs_asciinema_player.egg-info
 .pytest_cache
 __pycache__
 site
+.mypy_cache

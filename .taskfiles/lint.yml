@@ -1,0 +1,60 @@
+---
+version: "3"
+
+tasks:
+  lint-template:
+    internal: true
+    cmds:
+      - source .venv/bin/activate && {{ .LINTER_COMMAND }}
+
+  bandit:
+    desc: Run bandit
+    cmds:
+      - task: lint-template
+        vars:
+          LINTER_COMMAND: bandit --configfile .config/linters/bandit.yml --recursive .
+
+  djlint:
+    desc: Run djlint
+    cmds:
+      - task: lint-template
+        vars:
+          LINTER_COMMAND: djlint . --configuration .config/linters/djlint.json
+
+  flake8:
+    desc: Run flake8
+    cmds:
+      - task: lint-template
+        vars:
+          LINTER_COMMAND: flake8 --config .config/linters/flake8.ini
+
+  mypy:
+    desc: Run mypy
+    cmds:
+      - task: lint-template
+        vars:
+          LINTER_COMMAND: mypy src/mkdocs_asciinema_player --config-file .config/linters/mypy.ini --strict
+
+  pylint:
+    desc: Run pylint
+    cmds:
+      - task: lint-template
+        vars:
+          LINTER_COMMAND: pylint --rcfile .config/linters/pylintrc.ini src/mkdocs_asciinema_player
+
+  yamllint:
+    desc: Run yamllint
+    cmds:
+      - task: lint-template
+        vars:
+          LINTER_COMMAND: yamllint -c .config/linters/yamllint.yml .
+
+  all:
+    desc: Run all linters
+    cmds:
+      - task: bandit
+      - task: djlint
+      - task: flake8
+      - task: mypy
+      - task: pylint
+      - task: yamllint

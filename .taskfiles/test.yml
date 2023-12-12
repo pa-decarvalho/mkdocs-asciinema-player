@@ -1,0 +1,10 @@
+---
+version: "3"
+
+tasks:
+  pytest:
+    desc: Run pytest command
+    cmds:
+      - >
+        source .venv/bin/activate &&
+        pytest -vv

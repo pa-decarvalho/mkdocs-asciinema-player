@@ -1,0 +1,51 @@
+---
+version: "3"
+
+vars:
+  PYTHON: python3.12
+
+includes:
+  lint: .taskfiles/lint.yml
+  test: .taskfiles/test.yml
+
+tasks:
+  default:
+    cmds:
+      - task: help
+
+  bootstrap:
+    desc: Bootstrap Python venv (requirements)
+    cmds:
+      - >
+        {{ .PYTHON }} -m venv .venv &&
+        source .venv/bin/activate &&
+        pip install --upgrade pip &&
+        pip install -e .[lint,test,doc]
+
+  clean:
+    desc: Cleanup project
+    cmds:
+      - rm -rf .mypy_cache
+      - rm -rf .pytest_cache
+      - rm -rf .task
+      - rm -rf .venv
+      - rm -rf src/mkdocs_asciinema_player.egg-info
+      - rm -rf src/mkdocs_asciinema_player/__pycache__
+      - rm -rf tests/unit/__pycache__
+
+  reinit:
+    desc: Reinitialization Python venv (requirements)
+    cmds:
+      - task: clean
+      - task: bootstrap
+
+  pipeline:
+    desc: Simulate run pipeline
+    cmds:
+      - task: lint:all
+      - task: test:pytest
+
+  help:
+    desc: Display help
+    cmds:
+      - task --list
