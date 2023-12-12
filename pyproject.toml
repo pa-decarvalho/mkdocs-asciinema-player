@@ -22,6 +22,9 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+dev = [
+  "asciinema==2.4.0",
+]
 lint = [
   "bandit==1.7.5",
   "djlint==1.34.0",

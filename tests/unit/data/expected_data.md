@@ -8,7 +8,7 @@
 </div>
 <script>
     window.onload = function(){
-        AsciinemaPlayer.create('https://localhost:8000/example-group/project-name/assets/asciinema/test.cast', document.getElementById('clone-and-test'), {
+        AsciinemaPlayer.create('/example-group/project-name/assets/asciinema/test.cast', document.getElementById('clone-and-test'), {
             loop: true,
             cols: 120,
             rows: 25,

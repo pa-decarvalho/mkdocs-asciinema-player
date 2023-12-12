@@ -28,7 +28,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
         self.expected_data = file_content
         plugin = AsciinemaPlayerPlugin()
         data = {
-            "site_url": "https://localhost:8000/example-group/project-name/",
+            "site_url": "/example-group/project-name/",
             "cast_file_path": "assets/asciinema/test.cast"
         }
         result = plugin.render_template(data)

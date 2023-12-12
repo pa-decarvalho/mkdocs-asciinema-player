@@ -5,6 +5,7 @@ vars:
   PYTHON: python3.12
   PYTHON_MIN_VERSION: 3.9
   TASK_MIN_VERSION: 3.32.0
+  ASCIINEMA_PLAYER_VERSION: 3.6.3
 
 includes:
   check: .taskfiles/check.yml
@@ -25,7 +26,7 @@ tasks:
         {{ .PYTHON }} -m venv .venv &&
         source .venv/bin/activate &&
         pip install --upgrade pip &&
-        pip install -e .[lint,test,doc]
+        pip install -e .[dev,lint,test]
 
   clean:
     desc: Cleanup project
@@ -34,6 +35,9 @@ tasks:
       - rm -rf .pytest_cache
       - rm -rf .task
       - rm -rf .venv
+      - rm -rf docs/assets/css
+      - rm -rf docs/assets/js
+      - rm -rf site
       - rm -rf src/mkdocs_asciinema_player.egg-info
       - rm -rf src/mkdocs_asciinema_player/__pycache__
       - rm -rf tests/unit/__pycache__

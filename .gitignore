@@ -5,3 +5,7 @@ mkdocs_asciinema_player.egg-info
 __pycache__
 site
 .mypy_cache
+
+# Auto generated assets
+docs/assets/css
+docs/assets/js

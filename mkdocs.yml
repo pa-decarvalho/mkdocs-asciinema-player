@@ -1,0 +1,16 @@
+---
+# Project information
+site_name: MkDocs asciinema-player plugin
+site_url: https://pa-decarvalho.github.io/mkdocs-asciinema-player/
+site_description: >-
+  This plugin enriches MkDocs documentation by seamlessly incorporating asciinema-player,
+  enabling interactive playback of terminal recordings for dynamic command-line demonstrations.
+
+# Repository
+repo_name: mkdocs-asciinema-player
+repo_url: https://github.com/pa-decarvalho/mkdocs-asciinema-player
+
+# Plugins
+plugins:
+  - search
+  - asciinema-player

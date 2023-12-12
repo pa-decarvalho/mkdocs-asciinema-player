@@ -5,10 +5,13 @@ This module defines the AsciinemaPlayerPlugin for embedding Asciinema player in 
 
 Author: De Carvalho Philippe-Andre
 """
+import os
+import shutil
 import re
 import json
 from json import JSONDecodeError
 from typing import Any, Optional, Match
+from urllib.parse import urlparse
 from jinja2 import Environment, PackageLoader
 from mkdocs.plugins import BasePlugin
 from mkdocs.config.base import Config
@@ -81,7 +84,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         if parsed_json is None:
             return ""
         template_data = {
-            "site_url": self.mkdocs_config["site_url"],
+            "site_url": urlparse(self.mkdocs_config["site_url"]).path,
             "cast_file_path": parsed_json["cast_file_path"]
         }
         return self.render_template(template_data)
@@ -90,6 +93,9 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
     def on_page_markdown(self, markdown: str, page: Page, config: MkDocsConfig, files: Files) -> Optional[str]:
         """
         Callback function called when processing page markdown.
+
+        This function searches for Asciinema player blocks in the markdown content and replaces them with
+        the rendered template containing the specified Asciinema player configuration.
 
         Args:
             markdown (str): The markdown content of the page.
@@ -105,3 +111,26 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
             self.replace_asciinema_player_match,
             markdown
         )
+
+    def on_pre_build(self, config: MkDocsConfig) -> None:
+        """
+        Callback function called before the MkDocs build process begins.
+
+        This function copies the Asciinema player CSS and JavaScript files to the MkDocs project's
+        assets directory and adds them to the MkDocs configuration for inclusion in the build.
+
+        Args:
+            config (MkDocsConfig): The MkDocs configuration object.
+        Returns:
+            None
+        """
+        asciinema_css_file = os.path.join(os.path.dirname(__file__), "assets", "asciinema-player.css")
+        dest_asciinema_css_file = os.path.join(config["docs_dir"], "assets", "css", "asciinema-player.css")
+        asciinema_js_file = os.path.join(os.path.dirname(__file__), "assets", "asciinema-player.min.js")
+        dest_asciinema_js_file = os.path.join(config["docs_dir"], "assets", "js", "asciinema-player.min.js")
+        os.makedirs(os.path.dirname(dest_asciinema_css_file), exist_ok=True)
+        os.makedirs(os.path.dirname(dest_asciinema_js_file), exist_ok=True)
+        shutil.copyfile(asciinema_css_file, dest_asciinema_css_file)
+        shutil.copyfile(asciinema_js_file, dest_asciinema_js_file)
+        config["extra_css"].append("assets/css/asciinema-player.css")
+        config["extra_javascript"].append("assets/js/asciinema-player.min.js")
