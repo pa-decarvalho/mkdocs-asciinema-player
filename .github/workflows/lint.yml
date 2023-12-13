@@ -1,0 +1,45 @@
+---
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.12"
+
+      - name: Install Dependencies
+        run: |
+          wget -P /tmp https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb
+          dpkg -i /tmp/task_linux_amd64.deb
+          rm -f /tmp/task_linux_amd64.deb
+          task bootstrap
+
+      - name: Run bandit
+        run: task lint:bandit
+
+      - name: Run djlint
+        run: task lint:djlint
+
+      - name: Run flake8
+        run: task lint:flake8
+
+      - name: Run mypy
+        run: task lint:mypy
+
+      - name: Run pylint
+        run: task lint:pylint
+
+      - name: Run yamllint
+        run: task lint:yamllint
