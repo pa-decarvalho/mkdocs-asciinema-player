@@ -8,12 +8,21 @@
 </div>
 <script>
     window.onload = function(){
-        AsciinemaPlayer.create('/example-group/project-name/assets/asciinema/test.cast', document.getElementById('clone-and-test'), {
-            loop: true,
+        AsciinemaPlayer.create("/example-group/project-name/assets/asciinema/test.cast", document.getElementById("clone-and-test"), {
             cols: 120,
-            rows: 25,
+            rows: 24,
             autoPlay: true,
-            terminalFontSize: "big"
+            preload: false,
+            loop: false,
+            startAt: 0,
+            speed: 1,
+            theme: "asciinema",
+            fit: "width",
+            controls: "auto",
+            pauseOnMarkers: false,
+            terminalFontSize: "small",
+            terminalFontFamily: "Consolas",
+            terminalLineHeight: 1.33333333,
         });
     }
 </script>

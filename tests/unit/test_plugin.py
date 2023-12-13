@@ -24,24 +24,24 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
 
     def test_render_template(self) -> None:
         with open(TESTDATA_EXPECTED_DATA_FILE, "r") as file:
-            file_content = file.read()
-        self.expected_data = file_content
+            expected_file_content = file.read()
+        self.expected_data = expected_file_content
         plugin = AsciinemaPlayerPlugin()
         data = {
             "site_url": "/example-group/project-name/",
-            "cast_file_path": "assets/asciinema/test.cast"
+            "cast_file_path": "assets/asciinema/test.cast",
+            "cols": 120,
+            "auto_play": "true"
         }
         result = plugin.render_template(data)
         self.assertEqual(result, self.expected_data)
 
     def test_replace_asciinema_player(self) -> None:
         with open(TESTDATA_EXPECTED_DATA_FILE, "r") as file:
-            file_content = file.read()
-        self.expected_data = file_content
-        markdown_example = "```asciinema-player\n{\"cast_file_path\": \"assets/asciinema/test.cast\"}\n```"
+            expected_file_content = file.read()
+        markdown_example = "```asciinema-player\n{\"cast_file_path\": \"assets/asciinema/test.cast\", \"cols\": 120, \"auto_play\": \"true\"}\n```"
         match_example = re.match(r"```asciinema-player\n(.*?)\n```", markdown_example)
-        print(match_example)
         plugin = AsciinemaPlayerPlugin()
         setattr(plugin, "mkdocs_config", {"site_url": "https://localhost:8000/example-group/project-name/"})
         print(plugin)
-        self.assertEqual(plugin.replace_asciinema_player_match(match_example), self.expected_data)
+        self.assertEqual(plugin.replace_asciinema_player_match(match_example), expected_file_content)

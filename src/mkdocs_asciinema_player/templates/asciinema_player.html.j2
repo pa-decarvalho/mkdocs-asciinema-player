@@ -1,0 +1,28 @@
+<div style="padding-top:15px; background-color: #acacac; border-radius: 3%">
+    <span style="display: flex; margin-bottom: 10px">
+        <div style="width: 15px; height: 15px; margin-left:5px; background-color: green; border-radius:50%"></div>
+        <div style="width: 15px; height: 15px; margin-left:5px; background-color: orange; border-radius:50%"></div>
+        <div style="width: 15px; height: 15px; margin-left:5px; background-color: red; border-radius:50%"></div>
+    </span>
+    <div id="clone-and-test"></div>
+</div>
+<script>
+    window.onload = function(){
+        AsciinemaPlayer.create("{{ site_url }}{{ cast_file_path }}", document.getElementById("clone-and-test"), {
+            cols: {{ cols | default(80) }},
+            rows: {{ rows | default(24) }},
+            autoPlay: {{ auto_play | default("false") }},
+            preload: {{ preload | default("false") }},
+            loop: {{ loop | default("false") }},
+            startAt: {{ start_at | default(0) }},
+            speed: {{ speed | default(1) }},
+            theme: "{{ theme | default("asciinema") }}",
+            fit: "{{ fit | default("width") }}",
+            controls: "{{ controls | default("auto") }}",
+            pauseOnMarkers: {{ pause_on_markers | default("false") }},
+            terminalFontSize: "{{ terminal_font_size | default("small") }}",
+            terminalFontFamily: "{{ terminal_font_family | default("Consolas") }}",
+            terminalLineHeight: {{ terminal_line_height | default("1.33333333") }},
+        });
+    }
+</script>
