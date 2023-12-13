@@ -8,6 +8,8 @@ on:
 
 jobs:
   lint:
+    env:
+      TASK_VERSION: 3.32.0
     runs-on: ubuntu-latest
 
     steps:
