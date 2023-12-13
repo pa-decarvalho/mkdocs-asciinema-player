@@ -1,5 +1,5 @@
 ---
-name: Lint
+name: Test
 
 on:
   push:
@@ -10,10 +10,10 @@ on:
       - main
 
 jobs:
-  lint:
+  test:
     strategy:
       matrix:
-        linter: ["bandit", "djlint", "flake8", "mypy", "pylint", "yamllint"]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
     env:
       TASK_VERSION: 3.32.0
     runs-on: ubuntu-latest
@@ -21,10 +21,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
 
       - name: Install Dependencies
         run: |
@@ -32,5 +32,5 @@ jobs:
           sudo dpkg -i task_linux_amd64.deb
           task bootstrap
 
-      - name: Run linter ${{ matrix.linter }}
-        run: task lint:${{ matrix.linter }}
+      - name: Run tests
+        run: task test:pytest
