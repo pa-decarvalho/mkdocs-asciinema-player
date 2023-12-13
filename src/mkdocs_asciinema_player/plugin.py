@@ -121,13 +121,21 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         Returns:
             None
         """
+        terminal_player_css_file = os.path.join(os.path.dirname(__file__), "assets", "terminal-player.css")
+        dest_terminal_player_css_file = os.path.join(config["docs_dir"], "assets", "css", "terminal-player.css")
         asciinema_css_file = os.path.join(os.path.dirname(__file__), "assets", "asciinema-player.css")
         dest_asciinema_css_file = os.path.join(config["docs_dir"], "assets", "css", "asciinema-player.css")
         asciinema_js_file = os.path.join(os.path.dirname(__file__), "assets", "asciinema-player.min.js")
         dest_asciinema_js_file = os.path.join(config["docs_dir"], "assets", "js", "asciinema-player.min.js")
+
+        os.makedirs(os.path.dirname(dest_terminal_player_css_file), exist_ok=True)
         os.makedirs(os.path.dirname(dest_asciinema_css_file), exist_ok=True)
         os.makedirs(os.path.dirname(dest_asciinema_js_file), exist_ok=True)
+
+        shutil.copyfile(terminal_player_css_file, dest_terminal_player_css_file)
         shutil.copyfile(asciinema_css_file, dest_asciinema_css_file)
         shutil.copyfile(asciinema_js_file, dest_asciinema_js_file)
+
+        config["extra_css"].append("assets/css/terminal-player.css")
         config["extra_css"].append("assets/css/asciinema-player.css")
         config["extra_javascript"].append("assets/js/asciinema-player.min.js")
