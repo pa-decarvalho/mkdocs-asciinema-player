@@ -4,6 +4,7 @@ version: "3"
 dotenv: [".config/environments/.env"]
 
 vars:
+  USE_VENV: '{{ .USE_VENV | default true }}'
   PYTHON: '{{ .PYTHON | default "python3" }}'
   PYTHON_MIN_VERSION: 3.9
   TASK_MIN_VERSION: 3.32.0
@@ -25,10 +26,15 @@ tasks:
     deps: [check:all]
     cmds:
       - >
-        {{ .PYTHON }} -m venv .venv &&
-        source .venv/bin/activate &&
-        pip install --upgrade pip &&
-        pip install -e .[dev,lint,test]
+        if [ "{{ .USE_VENV }}" = "true" ]; then
+          {{ .PYTHON }} -m venv .venv &&
+          source .venv/bin/activate &&
+          pip install --upgrade pip &&
+          pip install -e .[dev,lint,test]
+        else
+          pip install --upgrade pip &&
+          pip install -e .[dev,lint,test]
+        fi
 
   clean:
     desc: Cleanup project

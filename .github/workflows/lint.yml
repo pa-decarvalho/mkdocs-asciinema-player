@@ -11,12 +11,12 @@ on:
 
 jobs:
   lint:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         linter: ["bandit", "djlint", "flake8", "mypy", "pylint", "yamllint"]
     env:
       TASK_VERSION: 3.32.0
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4

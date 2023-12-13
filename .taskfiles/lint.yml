@@ -5,7 +5,13 @@ tasks:
   lint-template:
     internal: true
     cmds:
-      - source .venv/bin/activate && {{ .LINTER_COMMAND }}
+      - >
+        if [ "{{ .USE_VENV }}" = "true" ]; then
+          source .venv/bin/activate &&
+          {{ .LINTER_COMMAND }}
+        else
+          {{ .LINTER_COMMAND }}
+        fi
 
   bandit:
     desc: Run bandit
