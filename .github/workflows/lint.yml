@@ -23,9 +23,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          wget -P /tmp https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb
-          dpkg -i /tmp/task_linux_amd64.deb
-          rm -f /tmp/task_linux_amd64.deb
+          wget https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb
+          dpkg -i task_linux_amd64.deb
           task bootstrap
 
       - name: Run bandit
