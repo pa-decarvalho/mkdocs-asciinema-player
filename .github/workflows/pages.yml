@@ -8,12 +8,22 @@ on:
 
 jobs:
   deploy:
-    name: Deploy docs
     runs-on: ubuntu-latest
+    env:
+      TASK_VERSION: 3.32.0
+      USE_VENV: false
     steps:
       - name: Checkout main
         uses: actions/checkout@v4
-
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: Install Dependencies
+        run: |
+          wget https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb
+          sudo dpkg -i task_linux_amd64.deb
+          task bootstrap
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         # Or use mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
