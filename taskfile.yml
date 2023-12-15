@@ -30,10 +30,10 @@ tasks:
         if [ "{{ .USE_VENV }}" = "true" ]; then
           {{ .PYTHON }} -m venv .venv &&
           source .venv/bin/activate &&
-          pip install --upgrade pip &&
+          pip install --upgrade pip build twine &&
           pip install -e .[dev,lint,test]
         else
-          pip install --upgrade pip &&
+          pip install --upgrade pip build twine &&
           pip install -e .[dev,lint,test]
         fi
 
@@ -45,6 +45,8 @@ tasks:
       - rm -rf .pytest_cache
       - rm -rf .task
       - rm -rf .venv
+      - rm -rf build
+      - rm -rf dist
       - rm -rf docs/assets/css
       - rm -rf docs/assets/js
       - rm -rf site

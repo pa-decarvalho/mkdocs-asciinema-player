@@ -1,0 +1,4 @@
+include src/mkdocs_asciinema_player/templates/asciinema_player.html.j2
+include src/mkdocs_asciinema_player/assets/terminal-player.css
+include src/mkdocs_asciinema_player/assets/asciinema-player.css
+include src/mkdocs_asciinema_player/assets/asciinema-player.min.js
