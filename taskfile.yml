@@ -24,6 +24,7 @@ tasks:
   bootstrap:
     desc: Bootstrap Python venv (requirements)
     deps: [check:all]
+    silent: true
     cmds:
       - >
         if [ "{{ .USE_VENV }}" = "true" ]; then
@@ -38,6 +39,7 @@ tasks:
 
   clean:
     desc: Cleanup project
+    silent: true
     cmds:
       - rm -rf .mypy_cache
       - rm -rf .pytest_cache
@@ -52,17 +54,20 @@ tasks:
 
   reinit:
     desc: Reinitialization Python venv (requirements)
+    silent: true
     cmds:
       - task: clean
       - task: bootstrap
 
   pipeline:
     desc: Simulate run pipeline
+    silent: true
     cmds:
       - task: lint:all
       - task: test:pytest
 
   help:
     desc: Display help
+    silent: true
     cmds:
       - task --list

@@ -4,6 +4,7 @@ version: "3"
 tasks:
   python-installed:
     desc: Ensure that Python is installed
+    silent: true
     cmds:
       - "{{ .PYTHON }} --version"
 
@@ -46,7 +47,10 @@ tasks:
 
   all:
     desc: Run all checks
+    silent: true
     cmds:
+      - echo "-------------------------"
       - task: python-installed
       - task: python-version
       - task: task-version
+      - echo "-------------------------"
