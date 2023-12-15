@@ -1,3 +1,9 @@
+## 0.3.0 (2023-12-15)
+
+### Feat
+
+- add manifest to push to pypi
+
 ## 0.2.0 (2023-12-15)
 
 ### Feat
