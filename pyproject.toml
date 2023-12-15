@@ -24,6 +24,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   "asciinema==2.4.0",
+  "commitizen==3.13.0",
 ]
 lint = [
   "bandit==1.7.5",
@@ -48,3 +49,10 @@ asciinema-player = "mkdocs_asciinema_player.plugin:AsciinemaPlayerPlugin"
 [build-system]
 requires = ["setuptools>=43.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "semver"
+version_provider = "pep621"
+update_changelog_on_bump = true

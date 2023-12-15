@@ -21,17 +21,14 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.12"
-
       - name: Install Dependencies
         run: |
           wget https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb
           sudo dpkg -i task_linux_amd64.deb
           task bootstrap
-
       - name: Run linter ${{ matrix.linter }}
         run: task lint:${{ matrix.linter }}
