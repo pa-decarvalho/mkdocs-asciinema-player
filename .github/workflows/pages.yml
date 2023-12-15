@@ -1,0 +1,31 @@
+---
+name: Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      TASK_VERSION: 3.32.0
+      USE_VENV: false
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Dependencies
+        run: |
+          wget https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb
+          sudo dpkg -i task_linux_amd64.deb
+          task bootstrap
+      - name: Build and publish mkdocs site
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        run: mkdocs gh-deploy
