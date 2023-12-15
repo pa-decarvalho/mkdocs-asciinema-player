@@ -13,8 +13,12 @@ jobs:
       TASK_VERSION: 3.32.0
       USE_VENV: false
     steps:
-      - name: Checkout main
+      - name: Checkout Repository
         uses: actions/checkout@v4
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -24,8 +28,5 @@ jobs:
           wget https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb
           sudo dpkg -i task_linux_amd64.deb
           task bootstrap
-      - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
-        # Or use mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
-        env:
-          GITHUB_TOKEN: ${{ secrets.COMMITIZEN_TOKEN }}
+      - name: Build and publish mkdocs site
+        run: mkdocs gh-deploy --force
