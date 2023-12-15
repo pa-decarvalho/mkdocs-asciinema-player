@@ -8,24 +8,14 @@ on:
 
 jobs:
   deploy:
+    name: Deploy docs
     runs-on: ubuntu-latest
-    env:
-      TASK_VERSION: 3.32.0
-      USE_VENV: false
     steps:
-      - name: Checkout Repository
+      - name: Checkout main
         uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.12"
-      - name: Install Dependencies
-        run: |
-          wget https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb
-          sudo dpkg -i task_linux_amd64.deb
-          task bootstrap
-      - name: Build and publish mkdocs site
+
+      - name: Deploy docs
+        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+        # Or use mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
         env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-        run: mkdocs gh-deploy
+          GITHUB_TOKEN: ${{ secrets.COMMITIZEN_TOKEN }}
