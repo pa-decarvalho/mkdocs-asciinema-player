@@ -1,4 +1,5 @@
-name: ci
+---
+name: Pages
 
 on:
   push:
@@ -11,14 +12,19 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.x
-      - run: pip install mkdocs
-      - run: pip install mkdocs-asciinema-player
-      - run: mkdocs gh-deploy --force
+          python-version: 3.12
+      - name: Install MkDocs dependencies
+        run: |
+          pip install mkdocs
+          pip install mkdocs-asciinema-player
+      - name: Publish MkDocs to Github Pages
+        run: mkdocs gh-deploy --force
