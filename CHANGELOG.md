@@ -1,3 +1,9 @@
+## 0.4.0 (2023-12-15)
+
+### Feat
+
+- create feature to change description in pypi
+
 ## 0.3.0 (2023-12-15)
 
 ### Feat
