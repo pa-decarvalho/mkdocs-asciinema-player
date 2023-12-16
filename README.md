@@ -7,7 +7,9 @@
 
 A Mkdocs Plugin to include asciinema player in your documentation.
 
-## Setup
+## Quick Setup
+
+### Installation
 
 Install the plugin via pip :
 
@@ -15,9 +17,9 @@ Install the plugin via pip :
 pip install mkdocs-asciinema-player
 ```
 
-## Configure
+### Configure
 
-In your mkdocs.yml, add `asciinema-player` to the `plugins` section :
+In your `mkdocs.yml`, add `asciinema-player` to the `plugins` section :
 
 ```yaml
 plugins:
@@ -25,15 +27,7 @@ plugins:
   - asciinema-player
 ```
 
-In your `.gitignore` file, add this part to ignore copied files :
-
-```sh
-# Auto generated assets
-docs/assets/css
-docs/assets/js
-```
-
-## Usage
+### Usage
 
 In your MkDocs docs folder, add any [asciinema](https://asciinema.org/) `.cast` file and add this to any markdown page :
 
@@ -44,3 +38,9 @@ In your MkDocs docs folder, add any [asciinema](https://asciinema.org/) `.cast` 
 }
 ```
 ````
+
+### More
+
+For more information on the plugin, you can visit the the following [website](https://pa-decarvalho.github.io/mkdocs-asciinema-player/)
+
+You will find the complete documentation of the plugin, examples of use, installation and configuration instructions.

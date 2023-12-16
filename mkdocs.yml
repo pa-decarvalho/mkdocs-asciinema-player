@@ -12,7 +12,7 @@ repo_url: https://github.com/pa-decarvalho/mkdocs-asciinema-player
 
 # Theme
 theme:
-  name: material
+  name: readthedocs
 
 # Plugins
 plugins:

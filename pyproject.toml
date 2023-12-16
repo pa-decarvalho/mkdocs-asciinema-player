@@ -40,9 +40,6 @@ lint = [
 test = [
   "pytest==7.4.0",
 ]
-docs = [
-  "mkdocs-material==9.5.2",
-]
 
 [project.urls]
 "Homepage" = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
