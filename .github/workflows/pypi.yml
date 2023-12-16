@@ -1,5 +1,5 @@
 ---
-name: PyPI
+name: pypi
 
 on:
   push:

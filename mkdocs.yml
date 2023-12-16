@@ -10,6 +10,10 @@ site_description: >-
 repo_name: mkdocs-asciinema-player
 repo_url: https://github.com/pa-decarvalho/mkdocs-asciinema-player
 
+# Theme
+theme:
+  name: material
+
 # Plugins
 plugins:
   - search

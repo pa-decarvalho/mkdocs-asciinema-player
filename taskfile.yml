@@ -31,10 +31,10 @@ tasks:
           {{ .PYTHON }} -m venv .venv &&
           source .venv/bin/activate &&
           pip install --upgrade pip build twine &&
-          pip install -e .[dev,lint,test]
+          pip install -e .[dev,lint,test,docs]
         else
           pip install --upgrade pip build twine &&
-          pip install -e .[dev,lint,test]
+          pip install -e .[dev,lint,test,docs]
         fi
 
   clean:

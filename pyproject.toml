@@ -13,7 +13,10 @@ classifiers = [
   "Intended Audience :: System Administrators",
   "Topic :: Software Development :: Build Tools",
   "Natural Language :: English",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Topic :: Utilities",
   "Topic :: Software Development :: Documentation",
 ]
@@ -36,6 +39,9 @@ lint = [
 ]
 test = [
   "pytest==7.4.0",
+]
+docs = [
+  "mkdocs-material==9.5.2",
 ]
 
 [project.urls]
