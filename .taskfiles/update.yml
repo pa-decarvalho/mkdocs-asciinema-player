@@ -4,6 +4,7 @@ version: "3"
 tasks:
   asciinema-player:
     desc: Update asciinema-player version
+    silent: true
     cmds:
       - mkdir -p /tmp/asciinema-player-{{ .ASCIINEMA_PLAYER_VERSION }}
       - |
@@ -16,6 +17,7 @@ tasks:
 
   gitpod-dockerfile:
     desc: Update gitpod Dockerfile
+    silent: true
     cmds:
       - |
         sed -i 's/TASK_VERSION=.*/TASK_VERSION={{ .TASK_MIN_VERSION }}/' .gitpod/Dockerfile

@@ -4,6 +4,7 @@ version: "3"
 tasks:
   lint-template:
     internal: true
+    silent: true
     cmds:
       - >
         if [ "{{ .USE_VENV }}" = "true" ]; then
@@ -53,7 +54,7 @@ tasks:
     cmds:
       - task: lint-template
         vars:
-          LINTER_COMMAND: yamllint -c .config/linters/yamllint.yml .
+          LINTER_COMMAND: yamllint -c .config/linters/yamllint.yml . --strict
 
   all:
     desc: Run all linters
