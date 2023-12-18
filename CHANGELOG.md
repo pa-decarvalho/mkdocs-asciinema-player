@@ -1,3 +1,9 @@
+## 0.4.1 (2023-12-18)
+
+### Fix
+
+- change on_pre_build event to on_files to prevent doc from looping on build
+
 ## 0.4.0 (2023-12-15)
 
 ### Feat
