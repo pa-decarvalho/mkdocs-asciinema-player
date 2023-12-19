@@ -28,6 +28,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
         self.expected_data = expected_file_content
         plugin = AsciinemaPlayerPlugin()
         data = {
+            "match_id": 0,
             "site_url": "/example-group/project-name/",
             "cast_file_path": "assets/asciinema/test.cast",
             "cols": 120,
