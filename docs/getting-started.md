@@ -20,16 +20,6 @@ plugins:
   - asciinema-player
 ```
 
-If you intend to test in a local environment, update your `.gitignore` file with the following lines to avoid copying plugin files to your repository:
-
-```sh
-# Auto generated assets
-docs/assets/css
-docs/assets/js
-```
-
-This will prevent from copying plugin files to your repo.
-
 ## Usage
 
 To use `mkdocs-asciinema-player` you need to create a [fenced code block](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) with `asciinema-player` specified as the language.

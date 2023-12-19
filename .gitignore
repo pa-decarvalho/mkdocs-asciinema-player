@@ -22,7 +22,3 @@ dist/
 public
 site
 tests/**/docs
-
-# Auto generated assets
-docs/assets/css
-docs/assets/js

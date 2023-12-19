@@ -6,7 +6,6 @@ This module defines the AsciinemaPlayerPlugin for embedding Asciinema player in 
 Author: De Carvalho Philippe-Andre
 """
 import os
-import shutil
 import re
 import json
 from json import JSONDecodeError
@@ -17,7 +16,7 @@ from mkdocs.plugins import BasePlugin
 from mkdocs.config.base import Config
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.structure.pages import Page
-from mkdocs.structure.files import Files
+from mkdocs.structure.files import Files, File
 
 
 class AsciinemaPlayerConfig(Config):
@@ -35,6 +34,8 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         render_template: Renders a Jinja2 template with the given data.
         replace_asciinema_player_match: Replaces the matched Asciinema player block with the rendered template.
         on_page_markdown: Callback function called when processing page markdown.
+        on_files: Callback function called when copying additional files during the MkDocs build process.
+        on_config: Callback function called to modify the MkDocs configuration.
     """
     def __init__(self) -> None:
         self.mkdocs_config = MkDocsConfig()
@@ -102,7 +103,6 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         Returns:
             Optional[str]: The modified markdown content or None if no modification is needed.
         """
-        print(config)
         self.mkdocs_config = config
         return re.sub(
             re.compile(r"```asciinema-player\n(.*?)\n```", re.DOTALL),
@@ -115,38 +115,59 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         Callback function called when copying additional files during the MkDocs build process.
 
         This function is responsible for copying necessary files, such as CSS and JavaScript files,
-        required for embedding the Asciinema player in the MkDocs documentation. It also updates
-        the MkDocs configuration to include the copied files.
+        required for embedding the Asciinema player in the MkDocs documentation.
 
         Args:
             files (Files): The file structure of the MkDocs project.
-            config (Config): The MkDocs configuration object.
+            config (MkDocsConfig): The MkDocs configuration object.
 
         Returns:
             Files: The modified file structure after copying additional files.
         """
-        # Copy custom terminal player CSS file
-        terminal_player_css_file = os.path.join(os.path.dirname(__file__), "assets", "terminal-player.css")
-        dest_terminal_player_css_file = os.path.join(config["docs_dir"], "assets", "css", "terminal-player.css")
-        os.makedirs(os.path.dirname(dest_terminal_player_css_file), exist_ok=True)
-        shutil.copyfile(terminal_player_css_file, dest_terminal_player_css_file)
+        assets_src_dir = os.path.join(os.path.dirname(__file__), "assets")
+        css_dest_dir = os.path.join(config["site_dir"], "css")
+        js_dest_dir = os.path.join(config["site_dir"], "js")
 
-        # Copy Asciinema CSS file
-        asciinema_css_file = os.path.join(os.path.dirname(__file__), "assets", "asciinema-player.css")
-        dest_asciinema_css_file = os.path.join(config["docs_dir"], "assets", "css", "asciinema-player.css")
-        os.makedirs(os.path.dirname(dest_asciinema_css_file), exist_ok=True)
-        shutil.copyfile(asciinema_css_file, dest_asciinema_css_file)
+        terminal_player_css_file_obj = File(
+            path="terminal-player.css",
+            src_dir=assets_src_dir,
+            dest_dir=css_dest_dir,
+            use_directory_urls=config["use_directory_urls"],
+        )
+        asciinema_css_file_obj = File(
+            path="asciinema-player.css",
+            src_dir=assets_src_dir,
+            dest_dir=css_dest_dir,
+            use_directory_urls=config["use_directory_urls"],
+        )
+        asciinema_js_file_obj = File(
+            path="asciinema-player.min.js",
+            src_dir=assets_src_dir,
+            dest_dir=js_dest_dir,
+            use_directory_urls=config["use_directory_urls"],
+        )
 
-        # Copy Asciinema JavaScript file
-        asciinema_js_file = os.path.join(os.path.dirname(__file__), "assets", "asciinema-player.min.js")
-        dest_asciinema_js_file = os.path.join(config["docs_dir"], "assets", "js", "asciinema-player.min.js")
-        os.makedirs(os.path.dirname(dest_asciinema_js_file), exist_ok=True)
-        shutil.copyfile(asciinema_js_file, dest_asciinema_js_file)
+        files.append(terminal_player_css_file_obj)
+        files.append(asciinema_css_file_obj)
+        files.append(asciinema_js_file_obj)
 
-        # Update MkDocs configuration to include the copied files
-        config["extra_css"].append("assets/css/terminal-player.css")
-        config["extra_css"].append("assets/css/asciinema-player.css")
-        config["extra_javascript"].append("assets/js/asciinema-player.min.js")
-
-        # Return the modified file structure
         return files
+
+    def on_config(self, config: MkDocsConfig) -> MkDocsConfig:
+        """
+        Callback function called to modify the MkDocs configuration.
+
+        This function updates the MkDocs configuration to include the paths
+        of the copied CSS and JavaScript files required for Asciinema player.
+
+        Args:
+            config (MkDocsConfig): The MkDocs configuration object.
+
+        Returns:
+            MkDocsConfig: The modified MkDocs configuration.
+        """
+        config["extra_css"].append("css/terminal-player.css")
+        config["extra_css"].append("css/asciinema-player.css")
+        config["extra_javascript"].append("js/asciinema-player.min.js")
+
+        return config
