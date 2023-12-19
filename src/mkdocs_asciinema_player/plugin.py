@@ -39,6 +39,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
     """
     def __init__(self) -> None:
         self.mkdocs_config = MkDocsConfig()
+        self.match_id = 0
 
     def parse_json(self, content: str) -> Any:
         """
@@ -85,6 +86,8 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         if parsed_json is None:
             return ""
         parsed_json["site_url"] = urlparse(self.mkdocs_config["site_url"]).path
+        parsed_json["match_id"] = self.match_id
+        self.match_id += 1
         return self.render_template(parsed_json)
 
     # pylint: disable-next=unused-argument

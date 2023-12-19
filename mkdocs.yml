@@ -9,6 +9,7 @@ site_description: >-
 # Repository
 repo_name: mkdocs-asciinema-player
 repo_url: https://github.com/pa-decarvalho/mkdocs-asciinema-player
+edit_uri: blob/main/docs/
 
 # Theme
 theme:
