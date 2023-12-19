@@ -1,3 +1,9 @@
+## 0.4.2 (2023-12-19)
+
+### Fix
+
+- **plugin**: modify file copying mechanism for CSS and JS assets
+
 ## 0.4.1 (2023-12-18)
 
 ### Fix
