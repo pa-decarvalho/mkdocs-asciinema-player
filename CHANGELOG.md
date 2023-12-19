@@ -1,3 +1,9 @@
+## 0.4.3 (2023-12-19)
+
+### Fix
+
+- resolve issue with multiple terminals not appearing on the same page
+
 ## 0.4.2 (2023-12-19)
 
 ### Fix
