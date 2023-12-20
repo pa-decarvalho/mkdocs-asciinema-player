@@ -6,7 +6,7 @@ A Mkdocs Plugin to include [asciinema-player](https://github.com/asciinema/ascii
 
 ```asciinema-player
 {
-    "cast_file_path": "assets/asciinema/asciinema_example.cast",
+    "file": "assets/asciinema/asciinema_example.cast",
     "auto_play": "true"
 }
 ```

@@ -30,7 +30,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
         data = {
             "match_id": 0,
             "site_url": "/example-group/project-name/",
-            "cast_file_path": "assets/asciinema/test.cast",
+            "file": "assets/asciinema/test.cast",
             "cols": 120,
             "auto_play": "true"
         }
@@ -40,7 +40,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
     def test_replace_asciinema_player(self) -> None:
         with open(TESTDATA_EXPECTED_DATA_FILE, "r") as file:
             expected_file_content = file.read()
-        markdown_example = "```asciinema-player\n{\"cast_file_path\": \"assets/asciinema/test.cast\", \"cols\": 120, \"auto_play\": \"true\"}\n```"
+        markdown_example = "```asciinema-player\n{\"file\": \"assets/asciinema/test.cast\", \"cols\": 120, \"auto_play\": \"true\"}\n```"
         match_example = re.match(r"```asciinema-player\n(.*?)\n```", markdown_example)
         plugin = AsciinemaPlayerPlugin()
         setattr(plugin, "mkdocs_config", {"site_url": "https://localhost:8000/example-group/project-name/"})

@@ -34,7 +34,7 @@ In your MkDocs docs folder, add any [asciinema](https://asciinema.org/) `.cast` 
 ````markdown
 ```asciinema-player
 {
-    "cast_file_path": "assets/asciinema/bootstrap.cast"
+    "file": "assets/asciinema/bootstrap.cast"
 }
 ```
 ````

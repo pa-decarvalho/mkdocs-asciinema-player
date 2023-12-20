@@ -1,10 +1,11 @@
-<div style="padding-top:15px; background-color: #acacac; border-radius: 3%">
-    <span style="display: flex; margin-bottom: 10px">
-        <div style="width: 15px; height: 15px; margin-left:5px; background-color: green; border-radius:50%"></div>
-        <div style="width: 15px; height: 15px; margin-left:5px; background-color: orange; border-radius:50%"></div>
-        <div style="width: 15px; height: 15px; margin-left:5px; background-color: red; border-radius:50%"></div>
-    </span>
-    <div id="asciinema-player-0"></div>
+<div class="mkap-window">
+    <div class="mkap-menu">
+        <div class="mkap-button mkap-button-close"></div>
+        <div class="mkap-button mkap-button-minimize"></div>
+        <div class="mkap-button mkap-button-zoom"></div>
+        <div class="mkap-button-title">Terminal</div>
+    </div>
+    <div class="mkap-player" id="asciinema-player-0"></div>
 </div>
 <script>
     window.addEventListener("load", function(event) {
