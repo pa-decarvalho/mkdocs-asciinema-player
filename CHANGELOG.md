@@ -1,3 +1,9 @@
+## 0.5.0 (2023-12-20)
+
+### Feat
+
+- rework the look of the terminal and add title parameter
+
 ## 0.4.3 (2023-12-19)
 
 ### Fix
