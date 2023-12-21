@@ -32,7 +32,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
             "site_url": "/example-group/project-name/",
             "file": "assets/asciinema/test.cast",
             "cols": 120,
-            "auto_play": "true"
+            "auto_play": True
         }
         result = plugin.render_template(data)
         self.assertEqual(result, self.expected_data)
@@ -40,7 +40,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
     def test_replace_asciinema_player(self) -> None:
         with open(TESTDATA_EXPECTED_DATA_FILE, "r") as file:
             expected_file_content = file.read()
-        markdown_example = "```asciinema-player\n{\"file\": \"assets/asciinema/test.cast\", \"cols\": 120, \"auto_play\": \"true\"}\n```"
+        markdown_example = "```asciinema-player\n{\"file\": \"assets/asciinema/test.cast\", \"cols\": 120, \"auto_play\": true}\n```"
         match_example = re.match(r"```asciinema-player\n(.*?)\n```", markdown_example)
         plugin = AsciinemaPlayerPlugin()
         setattr(plugin, "mkdocs_config", {"site_url": "https://localhost:8000/example-group/project-name/"})
