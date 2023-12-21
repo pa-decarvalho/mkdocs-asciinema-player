@@ -1,3 +1,9 @@
+## 0.6.0 (2023-12-21)
+
+### Feat
+
+- **css**: add a border and box-shadow to mkap-window
+
 ## 0.5.0 (2023-12-20)
 
 ### Feat
