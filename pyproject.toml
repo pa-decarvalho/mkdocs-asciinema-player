@@ -47,7 +47,7 @@ test = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
+Documentation = "https://pa-decarvalho.github.io/mkdocs-asciinema-player/"
 Issues = "https://github.com/pa-decarvalho/mkdocs-asciinema-player/issues"
 Source = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
 
