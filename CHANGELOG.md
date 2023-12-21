@@ -1,3 +1,9 @@
+## 0.6.1 (2023-12-21)
+
+### Fix
+
+- **plugin**: resolve issue with boolean types not being handled properly
+
 ## 0.6.0 (2023-12-21)
 
 ### Feat
