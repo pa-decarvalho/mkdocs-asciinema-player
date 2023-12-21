@@ -3,6 +3,11 @@ name = "mkdocs-asciinema-player"
 version = "0.5.0"
 description = "A Mkdocs Plugin to include asciinema player in your documentation."
 readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["mkdocs", "documentation", "asciinema"]
+authors = [
+  {name = "Philippe-André De Carvalho", email = "philippe.andre.decarvalho@gmail.com"}
+]
 requires-python = ">=3.9"
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -42,9 +47,9 @@ test = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
-"Bug Reports" = "https://github.com/pa-decarvalho/mkdocs-asciinema-player/issues"
-"Source" = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
+Documentation = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
+Issues = "https://github.com/pa-decarvalho/mkdocs-asciinema-player/issues"
+Source = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
 
 [project.entry-points."mkdocs.plugins"]
 asciinema-player = "mkdocs_asciinema_player.plugin:AsciinemaPlayerPlugin"

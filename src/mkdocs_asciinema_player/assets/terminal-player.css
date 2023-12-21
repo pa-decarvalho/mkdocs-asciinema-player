@@ -5,14 +5,15 @@
 */
 
 .mkap-window {
-
+    background-color: #37343c;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 0px 3px #b4b0b8;
+    padding: 4px;
+    margin-bottom: 24px;
 }
 
 .mkap-menu {
     height: 2em;
-    background-color: #37343c;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
