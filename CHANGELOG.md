@@ -1,3 +1,9 @@
+## 0.7.0 (2024-01-24)
+
+### Feat
+
+- add validate user config feature
+
 ## 0.6.1 (2023-12-21)
 
 ### Fix
