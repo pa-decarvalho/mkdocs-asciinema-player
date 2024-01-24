@@ -9,21 +9,21 @@
 </div>
 <script>
     window.addEventListener("load", function(event) {
-        AsciinemaPlayer.create("{{ site_url }}{{ file }}", document.getElementById("{{ 'asciinema-player-' ~ match_id }}"), {
-            cols: {{ cols | default(80) }},
-            rows: {{ rows | default(24) }},
-            autoPlay: {{ (auto_play | string | lower) | default("false", true) }},
-            preload: {{ (preload | string | lower) | default("false", true) }},
-            loop: {{ (loop | string | lower) | default("false", true) }},
-            startAt: {{ start_at | default(0) }},
-            speed: {{ speed | default(1) }},
-            theme: "{{ theme | default("asciinema") }}",
-            fit: "{{ fit | default("width") }}",
-            controls: "{{ controls | default("auto") }}",
-            pauseOnMarkers: {{ (pause_on_markers | string | lower) | default("false", true) }},
-            terminalFontSize: "{{ terminal_font_size | default("small") }}",
-            terminalFontFamily: "{{ terminal_font_family | default("Consolas") }}",
-            terminalLineHeight: {{ terminal_line_height | default("1.33333333") }},
+        AsciinemaPlayer.create("{{ file_path }}", document.getElementById("{{ 'asciinema-player-' ~ match_id }}"), {
+            cols: {{ cols }},
+            rows: {{ rows }},
+            autoPlay: {{ auto_play | string | lower }},
+            preload: {{ preload | string | lower }},
+            loop: {{ loop | string | lower }},
+            startAt: "{{ start_at }}",
+            speed: {{ speed }},
+            theme: "{{ theme }}",
+            fit: "{{ fit }}",
+            controls: "{{ controls }}",
+            pauseOnMarkers: {{ pause_on_markers | string | lower }},
+            terminalFontSize: "{{ terminal_font_size }}",
+            terminalFontFamily: "{{ terminal_font_family }}",
+            terminalLineHeight: {{ terminal_line_height }},
         });
     });
 </script>

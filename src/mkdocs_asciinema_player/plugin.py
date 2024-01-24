@@ -9,7 +9,7 @@ import os
 import re
 import json
 from json import JSONDecodeError
-from typing import Any, Optional, Match
+from typing import cast, Any, Optional, Match, Dict
 from urllib.parse import urlparse
 from jinja2 import Environment, PackageLoader
 from mkdocs.plugins import BasePlugin
@@ -32,12 +32,37 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
     Methods:
         parse_json: Parses JSON content and returns the resulting object.
         render_template: Renders a Jinja2 template with the given data.
+        validate_config: Validates the user configuration for the AsciinemaPlayerPlugin.
         replace_asciinema_player_match: Replaces the matched Asciinema player block with the rendered template.
         on_page_markdown: Callback function called when processing page markdown.
         on_files: Callback function called when copying additional files during the MkDocs build process.
         on_config: Callback function called to modify the MkDocs configuration.
     """
+    default_configs = {
+        "parameters": [
+            {"name": "file", "default": ""},
+            {"name": "title", "default": "Terminal"},
+            {"name": "cols", "default": 80},
+            {"name": "rows", "default": 24},
+            {"name": "auto_play", "default": False},
+            {"name": "preload", "default": False},
+            {"name": "loop", "default": False},
+            {"name": "start_at", "default": "0:00"},
+            {"name": "speed", "default": 1.0},
+            {"name": "theme", "default": "asciinema"},
+            {"name": "fit", "default": "width"},
+            {"name": "controls", "default": "auto"},
+            {"name": "pause_on_markers", "default": False},
+            {"name": "terminal_font_size", "default": "small"},
+            {"name": "terminal_font_family", "default": "Consolas"},
+            {"name": "terminal_line_height", "default": "1.33333333"},
+        ]
+    }
+
     def __init__(self) -> None:
+        """
+        Initializes an instance of the AsciinemaPlayerPlugin.
+        """
         self.mkdocs_config = MkDocsConfig()
         self.match_id = 0
 
@@ -47,6 +72,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
         Args:
             content (str): The JSON content to be parsed.
+
         Returns:
             Any: The parsed JSON object, or None if an error occurs during parsing.
         """
@@ -62,6 +88,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
         Args:
             data (dict): The data to be passed to the Jinja2 template.
+
         Returns:
             str: The rendered template as a string.
         """
@@ -73,19 +100,49 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         )
         return env.get_template("asciinema_player.html.j2").render(data)
 
+    def validate_config(self, user_config: dict[str, Any]) -> bool:
+        """
+        Validates the user configuration for the AsciinemaPlayerPlugin.
+
+        Args:
+            user_config (dict): The user-provided configuration for the plugin.
+
+        Returns:
+            bool: True if the configuration is valid, False otherwise.
+        """
+        parameters = self.default_configs.get("parameters", [])
+
+        if "file" not in user_config:
+            return False
+
+        for param in parameters:
+            param = cast(Dict[str, Any], param)
+            param_name = param["name"]
+            param_type = type(param["default"])
+
+            if param_name in user_config:
+                user_value = user_config[param_name]
+                if not isinstance(user_value, param_type):
+                    return False
+            elif "default" in param:
+                user_config[param_name] = param["default"]
+
+        return True
+
     def replace_asciinema_player_match(self, match: Match[str]) -> str:
         """
         Replaces the matched Asciinema player block with the rendered template.
 
         Args:
             match (re.Match): The regular expression match object.
+
         Returns:
             str: The replacement string.
         """
         parsed_json = self.parse_json(match.group(1))
-        if parsed_json is None:
+        if not self.validate_config(parsed_json) or parsed_json is None:
             return ""
-        parsed_json["site_url"] = urlparse(self.mkdocs_config["site_url"]).path
+        parsed_json["file_path"] = urlparse(self.mkdocs_config["site_url"]).path + parsed_json["file"]
         parsed_json["match_id"] = self.match_id
         self.match_id += 1
         return self.render_template(parsed_json)
@@ -103,6 +160,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
             page (Page): The current page being processed.
             config (MkDocsConfig): The MkDocs configuration object.
             files (Files): The file structure of the MkDocs project.
+
         Returns:
             Optional[str]: The modified markdown content or None if no modification is needed.
         """

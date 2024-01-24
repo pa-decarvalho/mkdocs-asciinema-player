@@ -29,13 +29,62 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
         plugin = AsciinemaPlayerPlugin()
         data = {
             "match_id": 0,
-            "site_url": "/example-group/project-name/",
+            "file_path": "/example-group/project-name/assets/asciinema/test.cast",
             "file": "assets/asciinema/test.cast",
             "cols": 120,
-            "auto_play": True
+            "rows": 24,
+            "auto_play": True,
+            "preload": False,
+            "loop": False,
+            "start_at": "0:00",
+            "speed": 1.0,
+            "theme": "asciinema",
+            "fit": "width",
+            "controls": "auto",
+            "pause_on_markers": False,
+            "terminal_font_size": "small",
+            "terminal_font_family": "Consolas",
+            "terminal_line_height": "1.33333333",
         }
         result = plugin.render_template(data)
         self.assertEqual(result, self.expected_data)
+
+    def test_valid_configuration(self) -> None:
+        user_config = {
+            "file": "assets/asciinema/bootstrap.cast",
+            "autoplay": True,
+            "speed": 1.5,
+            "theme": "dark"
+        }
+        plugin = AsciinemaPlayerPlugin()
+        self.assertTrue(plugin.validate_config(user_config))
+
+    def test_missing_required_parameter(self) -> None:
+        user_config = {
+            "autoplay": True,
+            "speed": 1.5,
+            "theme": "dark"
+        }
+        plugin = AsciinemaPlayerPlugin()
+        self.assertFalse(plugin.validate_config(user_config))
+
+    def test_required_parameter_invalid_type(self) -> None:
+        user_config = {
+            "file": 10,
+            "autoplay": True,
+            "speed": 1.5,
+            "theme": "dark"
+        }
+        plugin = AsciinemaPlayerPlugin()
+        self.assertFalse(plugin.validate_config(user_config))
+
+    def test_invalid_type(self) -> None:
+        user_config = {
+            "file": "assets/asciinema/bootstrap.cast",
+            "speed": "test"
+        }
+        plugin = AsciinemaPlayerPlugin()
+        self.assertFalse(plugin.validate_config(user_config))
 
     def test_replace_asciinema_player(self) -> None:
         with open(TESTDATA_EXPECTED_DATA_FILE, "r") as file:
