@@ -15,7 +15,6 @@
 .mkap-menu {
     height: 2em;
     display: flex;
-    flex-direction: row;
     align-items: center;
 }
 
@@ -43,7 +42,7 @@
 }
 
 .mkap-button-title {
-    width: 80%;
+    width: 70%;
     color: #b4b0b8;
     text-align: center;
 }
