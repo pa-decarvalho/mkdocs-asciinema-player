@@ -26,6 +26,11 @@
     border: 1px solid #000;
 }
 
+.mkap-button-group {
+    display:flex;
+    width: 15%;
+}
+
 .mkap-button-close {
     background-color: #ff3b47;
     border-color: #9d252b;
