@@ -6,21 +6,21 @@ tasks:
     desc: Update asciinema-player version
     silent: true
     cmds:
-      - mkdir -p /tmp/asciinema-player-{{ .ASCIINEMA_PLAYER_VERSION }}
+      - mkdir -p /tmp/asciinema-player-{{.ASCIINEMA_PLAYER_VERSION}}
       - |
-        cd /tmp/asciinema-player-{{ .ASCIINEMA_PLAYER_VERSION }}
-        wget https://github.com/asciinema/asciinema-player/releases/download/v{{ .ASCIINEMA_PLAYER_VERSION }}/asciinema-player.css
-        wget https://github.com/asciinema/asciinema-player/releases/download/v{{ .ASCIINEMA_PLAYER_VERSION }}/asciinema-player.min.js
+        cd /tmp/asciinema-player-{{.ASCIINEMA_PLAYER_VERSION}}
+        wget https://github.com/asciinema/asciinema-player/releases/download/v{{.ASCIINEMA_PLAYER_VERSION}}/asciinema-player.css
+        wget https://github.com/asciinema/asciinema-player/releases/download/v{{.ASCIINEMA_PLAYER_VERSION}}/asciinema-player.min.js
       - rm -rf src/mkdocs_asciinema_player/assets/*
-      - cp /tmp/asciinema-player-{{ .ASCIINEMA_PLAYER_VERSION }}/asciinema-player.css src/mkdocs_asciinema_player/assets
-      - cp /tmp/asciinema-player-{{ .ASCIINEMA_PLAYER_VERSION }}/asciinema-player.min.js src/mkdocs_asciinema_player/assets
+      - cp /tmp/asciinema-player-{{.ASCIINEMA_PLAYER_VERSION}}/asciinema-player.css src/mkdocs_asciinema_player/assets
+      - cp /tmp/asciinema-player-{{.ASCIINEMA_PLAYER_VERSION}}/asciinema-player.min.js src/mkdocs_asciinema_player/assets
 
   gitpod-dockerfile:
     desc: Update gitpod Dockerfile
     silent: true
     cmds:
       - |
-        sed -i 's/TASK_VERSION=.*/TASK_VERSION={{ .TASK_MIN_VERSION }}/' .gitpod/Dockerfile
+        sed -i 's/TASK_VERSION=.*/TASK_VERSION={{.TASK_MIN_VERSION}}/' .gitpod/Dockerfile
 
   all:
     desc: Run all updates
