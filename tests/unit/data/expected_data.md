@@ -1,9 +1,12 @@
 <div class="mkap-window">
     <div class="mkap-menu">
-        <div class="mkap-button mkap-button-close"></div>
-        <div class="mkap-button mkap-button-minimize"></div>
-        <div class="mkap-button mkap-button-zoom"></div>
+        <div class="mkap-button-group">
+            <div class="mkap-button mkap-button-close"></div>
+            <div class="mkap-button mkap-button-minimize"></div>
+            <div class="mkap-button mkap-button-zoom"></div>
+        </div>
         <div class="mkap-button-title">Terminal</div>
+        <div class="mkap-button-group">&nbsp;</div>
     </div>
     <div class="mkap-player" id="asciinema-player-0"></div>
 </div>
