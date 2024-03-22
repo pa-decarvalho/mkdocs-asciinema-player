@@ -30,4 +30,4 @@ jobs:
           sudo dpkg -i task_linux_amd64.deb
           task bootstrap
       - name: Publish MkDocs to Github Pages
-        run: mkdocs gh-deploy --force
+        run: .venv/bin/mkdocs gh-deploy --force
