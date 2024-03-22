@@ -1,3 +1,9 @@
+## 0.7.1 (2024-03-22)
+
+### Fix
+
+- center window title with buttons
+
 ## 0.7.0 (2024-01-24)
 
 ### Feat
