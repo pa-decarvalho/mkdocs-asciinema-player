@@ -1,15 +1,10 @@
-<div class="mkap-window">
-    <div class="mkap-menu">
-        <div class="mkap-button-group">
-            <div class="mkap-button mkap-button-close"></div>
-            <div class="mkap-button mkap-button-minimize"></div>
-            <div class="mkap-button mkap-button-zoom"></div>
-        </div>
-        <div class="mkap-button-title">{{ title | default("Terminal") }}</div>
-        <div class="mkap-button-group">&nbsp;</div>
-    </div>
-    <div class="mkap-player" id="{{ 'asciinema-player-' ~ match_id }}"></div>
-</div>
+{% if theme == "night" %}
+{% include "night.html" %}
+{% elif theme == "blue" %}
+{% include "blue.html" %}
+{% elif theme == "penguin" %}
+{% include "penguin.html" %}
+{% endif %}
 <script>
     window.addEventListener("load", function(event) {
         AsciinemaPlayer.create("{{ file_path }}", document.getElementById("{{ 'asciinema-player-' ~ match_id }}"), {
