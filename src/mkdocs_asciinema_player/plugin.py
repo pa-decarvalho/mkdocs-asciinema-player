@@ -43,7 +43,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         "parameters": [
             {"name": "file", "default": ""},
             {"name": "title", "default": "Terminal"},
-            {"name": "theme", "default": "night"},
+            {"name": "mkap_theme", "default": "night"},
             {"name": "cols", "default": 80},
             {"name": "rows", "default": 24},
             {"name": "auto_play", "default": False},
