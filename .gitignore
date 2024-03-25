@@ -9,6 +9,10 @@ dist/
 # Unit test / coverage reports
 .pytest_cache/
 
+# Visual test (seleniumbase)
+latest_logs
+tests/fixtures/test_doc/mkdocs_override.yml
+
 # mypy
 .mypy_cache/
 
@@ -21,4 +25,3 @@ dist/
 # MkDocs
 public
 site
-tests/**/docs

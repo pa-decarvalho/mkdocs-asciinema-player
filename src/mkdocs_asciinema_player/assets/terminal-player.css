@@ -64,6 +64,11 @@
 
 /* Blue theme */
 
+@font-face {
+    font-family: "ms-sans-serif-bold";
+    src: url("./fonts/ms-sans-serif-bold.woff");
+}
+
 .mkap-window-blue {
     background: #c0c0c0;
     box-shadow: inset -1px -1px #0a0a0a, inset -2px -2px #808080;
@@ -83,6 +88,7 @@
 }
 
 .mkap-button-title-blue {
+    font-family: "ms-sans-serif-bold";
     width: 70%;
     color: white;
     text-align: center;
@@ -98,6 +104,7 @@
 .mkap-button-blue {
     height: 1.3em;
     width: 1.3em;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
 }
 
 .mkap-button-minimize-blue {

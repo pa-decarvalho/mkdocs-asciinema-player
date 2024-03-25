@@ -56,7 +56,6 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
             {"name": "controls", "default": "auto"},
             {"name": "pause_on_markers", "default": False},
             {"name": "terminal_font_size", "default": "small"},
-            {"name": "terminal_font_family", "default": "Consolas"},
             {"name": "terminal_line_height", "default": "1.33333333"},
         ]
     }
@@ -100,7 +99,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
             trim_blocks=True,
             autoescape=True,
         )
-        return env.get_template("asciinema_player.html.j2").render(data)
+        return env.get_template("asciinema-player.html").render(data)
 
     def validate_config(self, user_config: dict[str, Any]) -> bool:
         """
@@ -191,6 +190,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         css_dest_dir = os.path.join(config["site_dir"], "css")
         js_dest_dir = os.path.join(config["site_dir"], "js")
         icons_dest_dir = os.path.join(css_dest_dir, "icons")
+        fonts_dest_dir = os.path.join(css_dest_dir, "fonts")
 
         terminal_player_css_file_obj = File(
             path="terminal-player.css",
@@ -215,6 +215,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         files.append(asciinema_css_file_obj)
         files.append(asciinema_js_file_obj)
         shutil.copytree(assets_src_dir + "/icons", icons_dest_dir)
+        shutil.copytree(assets_src_dir + "/fonts", fonts_dest_dir)
 
         return files
 
