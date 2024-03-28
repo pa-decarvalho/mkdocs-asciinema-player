@@ -8,8 +8,6 @@
     {% if terminal_font_family is not defined %}
         {% set terminal_font_family = "ms-sans-serif-bold" %}
     {% endif %}
-{% elif mkap_theme == "penguin" %}
-    {% include "themes/penguin.html" %}
 {% endif %}
 <script>
     window.addEventListener("load", function(event) {

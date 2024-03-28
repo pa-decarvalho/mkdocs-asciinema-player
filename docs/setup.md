@@ -26,6 +26,7 @@ Below is a table of available configuration parameters:
 | ----------------------------------------------------------------------------------------------------------- | ------------ | ---------------------------------- |
 | file                                                                                                        | -            | Path to the cast file.             |
 | title                                                                                                       | "Terminal"   | Title of the terminal.             |
+| mkap_theme                                                                                                  | "night"      | Theme of the terminal.             |
 | [cols](https://github.com/asciinema/asciinema-player?tab=readme-ov-file#cols)                               | 80           | Number of columns in the terminal. |
 | [rows](https://github.com/asciinema/asciinema-player?tab=readme-ov-file#rows)                               | 24           | Number of rows in the terminal.    |
 | [auto_play](https://github.com/asciinema/asciinema-player?tab=readme-ov-file#autoplay)                      | false        | Automatic playback upon load.      |
