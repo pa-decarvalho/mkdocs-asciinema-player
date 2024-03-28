@@ -13,3 +13,9 @@ tasks:
     silent: true
     cmds:
       - .venv/bin/mkdocs serve
+
+  serve-doc-test:
+    desc: Run mkdocs serve command on doc test
+    silent: true
+    cmds:
+      - .venv/bin/mkdocs serve --dev-addr localhost:8001 --config-file tests/fixtures/test_doc/mkdocs_default.yml

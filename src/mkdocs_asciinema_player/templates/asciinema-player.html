@@ -1,15 +1,14 @@
-<div class="mkap-window">
-    <div class="mkap-menu">
-        <div class="mkap-button-group">
-            <div class="mkap-button mkap-button-close"></div>
-            <div class="mkap-button mkap-button-minimize"></div>
-            <div class="mkap-button mkap-button-zoom"></div>
-        </div>
-        <div class="mkap-button-title">{{ title | default("Terminal") }}</div>
-        <div class="mkap-button-group">&nbsp;</div>
-    </div>
-    <div class="mkap-player" id="{{ 'asciinema-player-' ~ match_id }}"></div>
-</div>
+{% if mkap_theme == "night" %}
+    {% include "themes/night.html" %}
+    {% if terminal_font_family is not defined %}
+        {% set terminal_font_family = "Consolas" %}
+    {% endif %}
+{% elif mkap_theme == "blue" %}
+    {% include "themes/blue.html" %}
+    {% if terminal_font_family is not defined %}
+        {% set terminal_font_family = "ms-sans-serif-bold" %}
+    {% endif %}
+{% endif %}
 <script>
     window.addEventListener("load", function(event) {
         AsciinemaPlayer.create("{{ file_path }}", document.getElementById("{{ 'asciinema-player-' ~ match_id }}"), {

@@ -1,0 +1,17 @@
+---
+# Project information
+site_name: Test MkDocs asciinema-player plugin
+site_url: https://example.com/
+
+# Repository
+repo_name: Test mkdocs-asciinema-player
+repo_url: https://example.com/
+
+# Theme
+theme:
+  name: readthedocs
+
+# Plugins
+plugins:
+  - search
+  - asciinema-player

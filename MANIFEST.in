@@ -1,4 +1,6 @@
-include src/mkdocs_asciinema_player/templates/asciinema_player.html.j2
+include src/mkdocs_asciinema_player/templates/asciinema-player.html
+include src/mkdocs_asciinema_player/templates/themes/night.html
+include src/mkdocs_asciinema_player/templates/themes/blue.html
 include src/mkdocs_asciinema_player/assets/terminal-player.css
 include src/mkdocs_asciinema_player/assets/asciinema-player.css
 include src/mkdocs_asciinema_player/assets/asciinema-player.min.js

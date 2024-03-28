@@ -1,0 +1,12 @@
+<div class="mkap-window-blue">
+    <div class="mkap-menu-blue">
+        <div class="mkap-button-group-blue">&nbsp;</div>
+        <div class="mkap-button-title-blue">{{ title | default("Terminal") }}</div>
+        <div class="mkap-button-group-blue">
+            <button class="mkap-button-blue mkap-button-close-blue">&nbsp;</button>
+            <button class="mkap-button-blue mkap-button-maximize-blue">&nbsp;</button>
+            <button class="mkap-button-blue mkap-button-minimize-blue">&nbsp;</button>
+        </div>
+    </div>
+    <div class="mkap-player" id="{{ 'asciinema-player-' ~ match_id }}"></div>
+</div>

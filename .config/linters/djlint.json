@@ -1,5 +1,4 @@
 {
     "profile": "jinja",
-    "extension": "html.j2",
     "use_gitignore": true
 }

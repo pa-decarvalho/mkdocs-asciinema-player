@@ -37,13 +37,14 @@ dev = [
 lint = [
   "bandit==1.7.5",
   "djlint==1.34.0",
-  "flake8==6.0.0",
+  "flake8==7.0.0",
   "mypy==1.7.1",
   "pylint==3.0.2",
   "yamllint==1.32.0",
 ]
 test = [
-  "pytest==7.4.0",
+  "pytest==8.0.1",
+  "seleniumbase==4.24.0",
 ]
 
 [project.urls]
