@@ -18,7 +18,7 @@ class BaseMkDocsTest(BaseCase):
             config_file = self.mkdocs_default_config
 
         self.mkdocs_process = subprocess.Popen([
-                "mkdocs", "serve",
+                ".venv/bin/mkdocs", "serve",
                 "--dev-addr", self.mkdocs_dev_addr,
                 "--config-file", config_file
             ]
