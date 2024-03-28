@@ -1,3 +1,14 @@
+## 0.8.0 (2024-03-28)
+
+### Feat
+
+- add default theme fonts and refactor code
+- add terminal themes
+
+### Fix
+
+- change theme var name to mkap_theme
+
 ## 0.7.1 (2024-03-22)
 
 ### Fix
