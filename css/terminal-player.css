@@ -1,0 +1,126 @@
+/*
+==========================================
+    MkDocs asciinema-player plugin CSS
+==========================================
+*/
+
+/* Global */
+
+.mkap-player {
+    background-color: black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+/* Night theme */
+
+.mkap-window-night {
+    background-color: #37343c;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 0px 3px #b4b0b8;
+    padding: 4px;
+    margin-bottom: 24px;
+}
+
+.mkap-menu-night {
+    height: 2em;
+    display: flex;
+    align-items: center;
+}
+
+.mkap-button-night {
+    height: 1em;
+    width: 1em;
+    margin-left: 0.3em;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+.mkap-button-group-night {
+    display: flex;
+    width: 15%;
+}
+
+.mkap-button-close-night {
+    background-color: #ff3b47;
+    border-color: #9d252b;
+}
+
+.mkap-button-minimize-night {
+    background-color: #ffc100;
+    border-color: #9d802c;
+}
+
+.mkap-button-zoom-night {
+    background-color: #00d742;
+    border-color: #049931;
+}
+
+.mkap-button-title-night {
+    width: 70%;
+    color: #b4b0b8;
+    text-align: center;
+}
+
+/* Blue theme */
+
+@font-face {
+    font-family: "ms-sans-serif-bold";
+    src: url("./fonts/ms-sans-serif-bold.woff");
+}
+
+.mkap-window-blue {
+    background: #c0c0c0;
+    box-shadow: inset -1px -1px #0a0a0a, inset -2px -2px #808080;
+    padding: 4px;
+    margin-bottom: 24px;
+}
+
+.mkap-menu-blue {
+    background: linear-gradient(
+        90deg,
+        #000080,
+        #1084d0
+    );
+    height: 2em;
+    display: flex;
+    align-items: center;
+}
+
+.mkap-button-title-blue {
+    font-family: "ms-sans-serif-bold";
+    width: 70%;
+    color: white;
+    text-align: center;
+}
+
+.mkap-button-group-blue {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 5px;
+    width: 15%;
+}
+
+.mkap-button-blue {
+    height: 1.3em;
+    width: 1.3em;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+}
+
+.mkap-button-minimize-blue {
+    background-image: url("./icons/minimize.svg");
+    background-repeat: no-repeat;
+    background-position: bottom 3px left 5px;
+}
+
+.mkap-button-maximize-blue {
+    background-image: url("./icons/maximize.svg");
+    background-repeat: no-repeat;
+    background-position: top 4px left 4px;
+}
+
+.mkap-button-close-blue {
+    background-image: url("./icons/close.svg");
+    background-repeat: no-repeat;
+    background-position: top 5px left 4px;
+}
