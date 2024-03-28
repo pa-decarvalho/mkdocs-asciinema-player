@@ -1,3 +1,9 @@
+## 0.8.1 (2024-03-28)
+
+### Fix
+
+- fix pypi action workflow
+
 ## 0.8.0 (2024-03-28)
 
 ### Feat
