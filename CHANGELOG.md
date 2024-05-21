@@ -1,3 +1,9 @@
+## 0.8.2 (2024-05-21)
+
+### Fix
+
+- add fonts and icons to manifest file
+
 ## 0.8.1 (2024-03-28)
 
 ### Fix
