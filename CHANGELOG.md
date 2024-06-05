@@ -1,3 +1,9 @@
+## 0.9.0 (2024-06-05)
+
+### Feat
+
+- improved blue theme buttons
+
 ## 0.8.2 (2024-05-21)
 
 ### Fix
