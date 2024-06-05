@@ -1,13 +1,7 @@
 {% if mkap_theme == "night" %}
     {% include "themes/night.html" %}
-    {% if terminal_font_family is not defined %}
-        {% set terminal_font_family = "Consolas" %}
-    {% endif %}
 {% elif mkap_theme == "blue" %}
     {% include "themes/blue.html" %}
-    {% if terminal_font_family is not defined %}
-        {% set terminal_font_family = "ms-sans-serif-bold" %}
-    {% endif %}
 {% endif %}
 <script>
     window.addEventListener("load", function(event) {

@@ -1,12 +1,13 @@
 <div class="mkap-window-blue">
-    <div class="mkap-menu-blue">
-        <div class="mkap-button-group-blue">&nbsp;</div>
-        <div class="mkap-button-title-blue">{{ title | default("Terminal") }}</div>
-        <div class="mkap-button-group-blue">
-            <button class="mkap-button-blue mkap-button-close-blue">&nbsp;</button>
-            <button class="mkap-button-blue mkap-button-maximize-blue">&nbsp;</button>
-            <button class="mkap-button-blue mkap-button-minimize-blue">&nbsp;</button>
+    <div class="mkap-title-bar-blue">
+        <div class="mkap-title-bar-text-blue">{{ title | default("Terminal") }}</div>
+        <div class="mkap-title-bar-controls-blue">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close"></button>
         </div>
     </div>
-    <div class="mkap-player" id="{{ 'asciinema-player-' ~ match_id }}"></div>
+    <div class="mkap-window-body-blue">
+        <div class="mkap-player-blue" id="{{ 'asciinema-player-' ~ match_id }}"></div>
+    </div>
 </div>

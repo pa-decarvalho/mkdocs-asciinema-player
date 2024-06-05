@@ -4,14 +4,6 @@
 ==========================================
 */
 
-/* Global */
-
-.mkap-player {
-    background-color: black;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
 /* Night theme */
 
 .mkap-window-night {
@@ -62,65 +54,96 @@
     text-align: center;
 }
 
+.mkap-player-night {
+    background-color: black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
 /* Blue theme */
 
-@font-face {
-    font-family: "ms-sans-serif-bold";
-    src: url("./fonts/ms-sans-serif-bold.woff");
+:root {
+    /* Color */
+    --text-color: #222222;
+    --surface: #c0c0c0;
+    --button-highlight: #ffffff;
+    --button-face: #dfdfdf;
+    --button-shadow: #808080;
+    --window-frame: #0a0a0a;
+    --dialog-blue: #000080;
+    --dialog-blue-light: #1084d0;
+    --dialog-gray: #808080;
+    --dialog-gray-light: #b5b5b5;
+    --link-blue: #0000ff;
+
+    --border-window-outer: inset -1px -1px var(--window-frame), inset 1px 1px var(--button-face);
+    --border-window-inner: inset -2px -2px var(--button-shadow), inset 2px 2px var(--button-highlight);
+    --border-raised-outer: inset -1px -1px var(--window-frame), inset 1px 1px var(--button-highlight);
+    --border-raised-inner: inset -2px -2px var(--button-shadow), inset 2px 2px var(--button-face);
 }
 
 .mkap-window-blue {
-    background: #c0c0c0;
-    box-shadow: inset -1px -1px #0a0a0a, inset -2px -2px #808080;
-    padding: 4px;
+    box-shadow: var(--border-window-outer), var(--border-window-inner);
+    background: var(--surface);
+    padding: 3px;
     margin-bottom: 24px;
 }
 
-.mkap-menu-blue {
-    background: linear-gradient(
-        90deg,
-        #000080,
-        #1084d0
-    );
-    height: 2em;
+.mkap-title-bar-blue {
+    background: linear-gradient(90deg, var(--dialog-blue), var(--dialog-blue-light));
+    padding: 3px 2px 3px 3px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.mkap-button-title-blue {
-    font-family: "ms-sans-serif-bold";
-    width: 70%;
+.mkap-title-bar-text-blue {
+    font-weight: bold;
     color: white;
-    text-align: center;
+    letter-spacing: 0;
+    margin-right: 24px;
 }
 
-.mkap-button-group-blue {
+.mkap-title-bar-controls-blue {
     display: flex;
-    flex-direction: row-reverse;
-    padding-right: 5px;
-    width: 15%;
 }
 
-.mkap-button-blue {
-    height: 1.3em;
-    width: 1.3em;
-    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+.mkap-title-bar-controls-blue button {
+    padding: 0;
+    display: block;
+    min-width: 16px;
+    min-height: 14px;
+    box-sizing: border-box;
+    border: none;
+    color: transparent;
+    text-shadow: 0 0 var(--text-color);
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-radius: 0;
 }
 
-.mkap-button-minimize-blue {
+.mkap-title-bar-controls-blue button[aria-label="Minimize"] {
     background-image: url("./icons/minimize.svg");
     background-repeat: no-repeat;
-    background-position: bottom 3px left 5px;
+    background-position: bottom 3px left 4px;
 }
 
-.mkap-button-maximize-blue {
+.mkap-title-bar-controls-blue button[aria-label="Maximize"] {
     background-image: url("./icons/maximize.svg");
     background-repeat: no-repeat;
-    background-position: top 4px left 4px;
+    background-position: top 2px left 3px;
 }
 
-.mkap-button-close-blue {
+.mkap-title-bar-controls-blue button[aria-label="Close"] {
     background-image: url("./icons/close.svg");
     background-repeat: no-repeat;
-    background-position: top 5px left 4px;
+    background-position: top 3px left 4px;
+}
+
+.mkap-window-body-blue {
+    margin: 5px;
+}
+
+.mkap-player-blue .ap-wrapper .ap-player {
+    border-radius: 0px;
 }
