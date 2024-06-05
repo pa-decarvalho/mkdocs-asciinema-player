@@ -7,6 +7,12 @@
 
 A Mkdocs Plugin to include asciinema player in your documentation.
 
+## Related Projects
+
+| Name                                                                                            | Description                                                            |
+|-------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| [98.css](https://github.com/jdan/98.css)                                                        | 98.css from [jdan](https://github.com/jdan)                            |
+
 ## Quick Setup
 
 ### Installation
