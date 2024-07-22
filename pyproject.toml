@@ -1,6 +1,6 @@
 [project]
 name = "mkdocs-asciinema-player"
-version = "0.9.0"
+version = "0.10.0"
 description = "A Mkdocs Plugin to include asciinema player in your documentation."
 readme = "README.md"
 license = {file = "LICENSE"}

@@ -1,3 +1,9 @@
+## 0.10.0 (2024-07-22)
+
+### Feat
+
+- update asciinema-player version to 3.8.0
+
 ## 0.9.0 (2024-06-05)
 
 ### Feat
