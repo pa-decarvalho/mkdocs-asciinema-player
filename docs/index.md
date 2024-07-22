@@ -2,6 +2,8 @@
 
 ---
 
+## Asciinema-Player version 3.8.0
+
 A Mkdocs Plugin to include [asciinema-player](https://github.com/asciinema/asciinema-player) in your documentation.
 
 ```asciinema-player
