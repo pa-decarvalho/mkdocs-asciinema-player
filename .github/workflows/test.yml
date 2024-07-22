@@ -17,7 +17,7 @@ jobs:
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12"]
     env:
-      TASK_VERSION: 3.32.0
+      TASK_VERSION: 3.38.0
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4

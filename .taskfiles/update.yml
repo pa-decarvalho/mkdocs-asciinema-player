@@ -3,7 +3,7 @@ version: "3"
 
 tasks:
   asciinema-player:
-    desc: Update asciinema-player version
+    desc: Update everything related to asciinema-player
     silent: true
     cmds:
       - mkdir -p /tmp/asciinema-player-{{.ASCIINEMA_PLAYER_VERSION}}
@@ -15,24 +15,21 @@ tasks:
       - rm -f src/mkdocs_asciinema_player/assets/asciinema-player.min.js
       - cp /tmp/asciinema-player-{{.ASCIINEMA_PLAYER_VERSION}}/asciinema-player.css src/mkdocs_asciinema_player/assets
       - cp /tmp/asciinema-player-{{.ASCIINEMA_PLAYER_VERSION}}/asciinema-player.min.js src/mkdocs_asciinema_player/assets
+      - sed -i "s/\#\# Asciinema Player version .*/\#\# Asciinema Player version {{.ASCIINEMA_PLAYER_VERSION}}/" docs/index.md
 
-  gitpod-dockerfile:
-    desc: Update gitpod Dockerfile
+  task:
+    desc: Update everything related to Task
     silent: true
     cmds:
       - |
         sed -i 's/TASK_VERSION=.*/TASK_VERSION={{.TASK_MIN_VERSION}}/' .gitpod/Dockerfile
-
-  documentation:
-    desc: Update index.md
-    silent: true
-    cmds:
-      - |
-        sed -i "s/\#\# Asciinema Player version .*/\#\# Asciinema Player version {{.ASCIINEMA_PLAYER_VERSION}}/" docs/index.md
+        sed -i 's/TASK_VERSION: .*/TASK_VERSION: {{.TASK_MIN_VERSION}}/' .github/workflows/lint.yml
+        sed -i 's/TASK_VERSION: .*/TASK_VERSION: {{.TASK_MIN_VERSION}}/' .github/workflows/pages.yml
+        sed -i 's/TASK_VERSION: .*/TASK_VERSION: {{.TASK_MIN_VERSION}}/' .github/workflows/pypi.yml
+        sed -i 's/TASK_VERSION: .*/TASK_VERSION: {{.TASK_MIN_VERSION}}/' .github/workflows/test.yml
 
   all:
     desc: Run all updates
     cmds:
       - task: asciinema-player
-      - task: gitpod-dockerfile
-      - task: documentation
+      - task: task
