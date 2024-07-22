@@ -6,8 +6,8 @@ dotenv: [".config/environments/.env"]
 vars:
   PYTHON: '{{.PYTHON | default "python3"}}'
   PYTHON_MIN_VERSION: 3.9
-  TASK_MIN_VERSION: 3.32.0
-  ASCIINEMA_PLAYER_VERSION: 3.6.3
+  TASK_MIN_VERSION: 3.38.0
+  ASCIINEMA_PLAYER_VERSION: 3.8.0
 
 includes:
   check: .taskfiles/check.yml
