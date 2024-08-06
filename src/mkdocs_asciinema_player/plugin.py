@@ -143,7 +143,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         parsed_json = self.parse_json(match.group(1))
         if not self.validate_config(parsed_json) or parsed_json is None:
             return ""
-        parsed_json["file_path"] = urlparse(self.mkdocs_config["site_url"]).path + parsed_json["file"]
+        parsed_json["file_path"] = self.site_url + parsed_json["file"]
         parsed_json["match_id"] = self.match_id
         self.match_id += 1
         return self.render_template(parsed_json)
@@ -166,6 +166,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
             Optional[str]: The modified markdown content or None if no modification is needed.
         """
         self.mkdocs_config = config
+        self.site_url = urlparse(self.mkdocs_config["site_url"]).path or ""
         return re.sub(
             re.compile(r"```asciinema-player\n(.*?)\n```", re.DOTALL),
             self.replace_asciinema_player_match,
