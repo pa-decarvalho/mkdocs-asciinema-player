@@ -65,6 +65,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         Initializes an instance of the AsciinemaPlayerPlugin.
         """
         self.mkdocs_config = MkDocsConfig()
+        self.site_url = ""
         self.match_id = 0
 
     def parse_json(self, content: str) -> Any:
