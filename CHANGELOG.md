@@ -1,3 +1,9 @@
+## 0.10.1 (2024-08-07)
+
+### Fix
+
+- allow to use mkdocs site_url var with e-default None value
+
 ## 0.10.0 (2024-07-22)
 
 ### Feat
