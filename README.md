@@ -50,3 +50,7 @@ In your MkDocs docs folder, add any [asciinema](https://asciinema.org/) `.cast` 
 For more information on the plugin, you can visit the the following [website](https://pa-decarvalho.github.io/mkdocs-asciinema-player/)
 
 You will find the complete documentation of the plugin, examples of use, installation and configuration instructions.
+
+## Contributing
+
+See [CONTRIBUTING.md](https://github.com/pa-decarvalho/mkdocs-asciinema-player/blob/main/CONTRIBUTING.md) file.
