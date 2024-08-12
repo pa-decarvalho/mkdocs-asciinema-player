@@ -1,18 +1,18 @@
-# Contributing to mkdocs-asciinema-player
+# Contributing
 
 Thank you for considering contributing to the **mkdocs-asciinema-player** project! We appreciate your time and effort in helping to make this project better. Below are some guidelines to help you get started.
 
 ## 📜 Table of Contents
 
-- [🚀 How Can I Contribute?](#-how-can-i-contribute)
-    - [🐛 Reporting Bugs](#-reporting-bugs)
-    - [💡 Suggesting Enhancements](#-suggesting-enhancements)
-    - [🔄 Pull Requests](#-pull-requests)
-- [🛠️ Setting Up the Development Environment](#️-setting-up-the-development-environment)
-    - [🌐 Using Gitpod](#-using-gitpod)
-    - [💻 Local Development](#-local-development)
-- [📝 Coding Guidelines](#-coding-guidelines)
-- [📄 License](#-license)
+- [🚀 How Can I Contribute?](#how-can-i-contribute)
+    - [🐛 Reporting Bugs](#reporting-bugs)
+    - [💡 Suggesting Enhancements](#suggesting-enhancements)
+    - [🔄 Pull Requests](#pull-requests)
+- [🛠️ Setting Up the Development Environment](#setting-up-the-development-environment)
+    - [🌐 Using Gitpod](#using-gitpod)
+    - [💻 Local Development](#local-development)
+- [📝 Coding Guidelines](#coding-guidelines)
+- [📄 License](#license)
 
 ## 🚀 How Can I Contribute?
 
@@ -28,23 +28,26 @@ We welcome suggestions for new features or improvements. To suggest an enhanceme
 
 If you'd like to contribute code, please follow these steps:
 
-1. **Fork the repository** to your GitHub account.
-2. **Clone your fork** to your local machine:
-    ```sh
-    git clone https://github.com/your-username/mkdocs-asciinema-player.git
-    ```
-3. **Create a new branch** for your feature or bugfix:
-    ```sh
-    git checkout -b feature/your-feature-name
-    ```
-4. **Make your changes** and commit them with clear and concise commit messages (please use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)).
-5. **Push your branch** to your forked repository:
-    ```sh
-    git push origin feature/your-feature-name
-    ```
-6. **Open a Pull Request** on the main repository, describing your changes in detail.
+- **Fork the repository** to your GitHub account.
+- **Clone your fork** to your local machine:
+```sh
+git clone https://github.com/your-username/mkdocs-asciinema-player.git
+```
+- **Create a new branch** for your feature or bugfix:
+```sh
+git checkout -b feature/your-feature-name
+```
+- **Make your changes** and commit them with clear and concise commit messages (please use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)).
+```sh
+git add . && git commit -m "feat: my new feature"
+```
+- **Push your branch** to your forked repository:
+```sh
+git push origin feature/your-feature-name
+```
+- **Open a Pull Request** on the main repository, describing your changes in detail.
 
-Please ensure your code follows the project's [coding guidelines](#-coding-guidelines) and includes appropriate tests.
+Please ensure your code follows the project's [coding guidelines](#coding-guidelines) and includes appropriate tests.
 
 ## 🛠️ Setting Up the Development Environment
 
@@ -60,17 +63,17 @@ Please read the official [Getting started](https://www.gitpod.io/docs/introducti
 
 If you prefer to set up the project on your local machine, follow these steps:
 
-1. Install dependencies.
+- Install dependencies.
     - Python >= PYTHON_MIN_VERSION (see [taskfile.yml](https://github.com/pa-decarvalho/mkdocs-asciinema-player/blob/main/taskfile.yml#L8))
     - [Task](https://taskfile.dev/) >= TASK_MIN_VERSION (see [taskfile.yml](https://github.com/pa-decarvalho/mkdocs-asciinema-player/blob/main/taskfile.yml#L9))
-2. Clone the forked repository:
-    ```sh
-    git clone https://github.com/your-username/mkdocs-asciinema-player.git
-    ```
-3. Run the bootstrap command:
-    ```sh
-    task bootstrap
-    ```
+- Clone the forked repository:
+```sh
+git clone https://github.com/your-username/mkdocs-asciinema-player.git
+```
+- Run the bootstrap command:
+```sh
+task bootstrap
+```
 
 ## 📝 Coding Guidelines
 
