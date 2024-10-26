@@ -17,7 +17,7 @@ jobs:
       matrix:
         linter: ["bandit", "djlint", "flake8", "mypy", "pylint", "yamllint"]
     env:
-      TASK_VERSION: 3.38.0
+      TASK_VERSION: 3.39.2
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
