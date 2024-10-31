@@ -1,3 +1,9 @@
+## 0.13.0 (2024-10-31)
+
+### Feat
+
+- refactor theme import system and prevent invalid theme name input
+
 ## 0.12.0 (2024-10-31)
 
 ### Feat
