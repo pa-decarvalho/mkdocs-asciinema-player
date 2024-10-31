@@ -6,7 +6,7 @@ tasks:
     desc: Ensure that Python is installed
     silent: true
     cmds:
-      - "{{.PYTHON}} --version"
+      - python --version
 
   # Checks if the provided version is greater than or equal to the minimum version.
   version-checker:
@@ -14,7 +14,7 @@ tasks:
     silent: true
     cmds:
       - |
-        {{.PYTHON}} -c """
+        python -c """
         version_to_check = '{{.VERSION_TO_CHECK}}'
         min_version = '{{.VERSION_MIN}}'
 
@@ -32,7 +32,7 @@ tasks:
         vars:
           TOOL: Python
           VERSION_TO_CHECK:
-            sh: "{{.PYTHON}} --version | grep -oP '\\d+\\.\\d+\\.\\d+'"
+            sh: "python --version | grep -oP '\\d+\\.\\d+\\.\\d+'"
           VERSION_MIN: "{{.PYTHON_MIN_VERSION}}"
 
   task-version:

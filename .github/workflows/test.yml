@@ -29,8 +29,7 @@ jobs:
         run: |
           wget https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb
           sudo dpkg -i task_linux_amd64.deb
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt install -fy
+          pip install poetry
           task bootstrap
       - name: Run tests
         run: task test:pytest

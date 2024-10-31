@@ -5,39 +5,33 @@ tasks:
   bandit:
     desc: Run bandit
     cmds:
-      - .venv/bin/bandit --configfile .config/linters/bandit.yml --recursive .
+      - poetry run bandit --configfile .config/bandit.yml --recursive .
 
   djlint:
     desc: Run djlint
     cmds:
-      - .venv/bin/djlint . --configuration .config/linters/djlint.json
-
-  flake8:
-    desc: Run flake8
-    cmds:
-      - .venv/bin/flake8 --config .config/linters/flake8.ini
+      - poetry run djlint . --configuration .config/djlint.json
 
   mypy:
     desc: Run mypy
     cmds:
-      - .venv/bin/mypy src/mkdocs_asciinema_player --config-file .config/linters/mypy.ini --strict
-
-  pylint:
-    desc: Run pylint
-    cmds:
-      - .venv/bin/pylint --rcfile .config/linters/pylintrc.ini src/mkdocs_asciinema_player
+      - MYPYPATH=src poetry run mypy --package mkdocs_asciinema_player --config-file .config/mypy.ini --strict
 
   yamllint:
     desc: Run yamllint
     cmds:
-      - .venv/bin/yamllint -c .config/linters/yamllint.yml . --strict
+      - poetry run yamllint -c .config/yamllint.yml . --strict
+
+  ruff:
+    desc: Run ruff
+    cmds:
+      - poetry run ruff check --config .config/ruff.toml
 
   all:
     desc: Run all linters
     cmds:
       - task: bandit
       - task: djlint
-      - task: flake8
       - task: mypy
-      - task: pylint
       - task: yamllint
+      - task: ruff

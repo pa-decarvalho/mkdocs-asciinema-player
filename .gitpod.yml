@@ -7,4 +7,3 @@ tasks:
     command: |
       task bootstrap
       task help
-      source .venv/bin/activate

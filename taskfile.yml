@@ -1,10 +1,7 @@
 ---
 version: "3"
 
-dotenv: [".config/environments/.env"]
-
 vars:
-  PYTHON: '{{.PYTHON | default "python3"}}'
   PYTHON_MIN_VERSION: 3.9
   TASK_MIN_VERSION: 3.39.2
   ASCIINEMA_PLAYER_VERSION: 3.8.1
@@ -22,34 +19,30 @@ tasks:
       - task: help
 
   bootstrap:
-    desc: Bootstrap Python venv (requirements)
+    desc: Bootstrap project
     deps: [check:all]
     silent: true
     cmds:
-      - |
-        {{.PYTHON}} -m venv .venv
-        .venv/bin/pip install --upgrade pip build twine
-        .venv/bin/pip install -e .[dev,lint,test]
+      - poetry install
 
   clean:
     desc: Cleanup project
     silent: true
     cmds:
+      - poetry env remove --all
       - rm -rf .mypy_cache
       - rm -rf .pytest_cache
+      - rm -rf .ruff_cache
       - rm -rf .task
-      - rm -rf .venv
       - rm -rf build
       - rm -rf dist
-      - rm -rf docs/assets/css
-      - rm -rf docs/assets/js
       - rm -rf site
       - rm -rf src/mkdocs_asciinema_player.egg-info
       - rm -rf src/mkdocs_asciinema_player/__pycache__
       - rm -rf tests/unit/__pycache__
 
   reinit:
-    desc: Reinitialization Python venv (requirements)
+    desc: Reinit project
     silent: true
     cmds:
       - task: clean

@@ -6,4 +6,4 @@ tasks:
     desc: Run pytest command
     silent: true
     cmds:
-      - .venv/bin/pytest -vv
+      - poetry run pytest -vv
