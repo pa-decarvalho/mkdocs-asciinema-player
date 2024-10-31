@@ -117,6 +117,13 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         if "file" not in user_config:
             return False
 
+        themes_dir = os.path.join(os.path.dirname(__file__), "templates", "themes")
+        available_themes = [
+            os.path.splitext(f)[0] 
+            for f in os.listdir(themes_dir) 
+            if f.endswith('.html')
+        ]
+
         for param in parameters:
             param = cast(Dict[str, Any], param)
             param_name = param["name"]
@@ -124,7 +131,11 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
             if param_name in user_config:
                 user_value = user_config[param_name]
-                if not isinstance(user_value, param_type):
+                if param_name == 'mkap_theme':
+                    if user_value not in available_themes:
+                        print(f"Invalid theme: {user_value}. Available themes are: {available_themes}")
+                        return False
+                elif not isinstance(user_value, param_type):
                     return False
             elif "default" in param:
                 user_config[param_name] = param["default"]

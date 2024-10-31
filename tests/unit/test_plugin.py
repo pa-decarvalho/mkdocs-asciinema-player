@@ -23,6 +23,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
             "match_id": 0,
             "file_path": "/example-group/project-name/assets/asciinema/test.cast",
             "file": "assets/asciinema/test.cast",
+            "mkap_theme": "night",
             "cols": 120,
             "rows": 24,
             "auto_play": True,
