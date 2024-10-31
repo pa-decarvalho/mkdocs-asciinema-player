@@ -39,3 +39,23 @@ Example:
     "auto_play": true
 }
 ```
+
+## None Theme
+
+```asciinema-player
+{
+    "file": "assets/asciinema/asciinema_example.cast",
+    "mkap_theme": "none",
+    "auto_play": true
+}
+```
+
+Example:
+
+```json
+{
+    "file": "assets/asciinema/asciinema_example.cast",
+    "mkap_theme": "none",
+    "auto_play": true
+}
+```

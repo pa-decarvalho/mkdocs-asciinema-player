@@ -147,3 +147,9 @@
 .mkap-player-blue .ap-wrapper .ap-player {
     border-radius: 0px;
 }
+
+/* None theme */
+
+.mkap-player-none {
+    margin-bottom: 24px;
+}
