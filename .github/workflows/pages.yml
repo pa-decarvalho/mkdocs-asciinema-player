@@ -28,6 +28,7 @@ jobs:
         run: |
           wget https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb
           sudo dpkg -i task_linux_amd64.deb
+          pip install poetry
           task bootstrap
       - name: Publish MkDocs to Github Pages
-        run: .venv/bin/mkdocs gh-deploy --force
+        run: poetry run mkdocs gh-deploy --force

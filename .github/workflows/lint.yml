@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        linter: ["bandit", "djlint", "flake8", "mypy", "pylint", "yamllint"]
+        linter: ["bandit", "djlint", "mypy", "yamllint", "ruff"]
     env:
       TASK_VERSION: 3.39.2
     steps:
@@ -29,6 +29,7 @@ jobs:
         run: |
           wget https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb
           sudo dpkg -i task_linux_amd64.deb
+          pip install poetry
           task bootstrap
       - name: Run linter ${{ matrix.linter }}
         run: task lint:${{ matrix.linter }}
