@@ -1,10 +1,4 @@
-{% if mkap_theme == "night" %}
-    {% include "themes/night.html" %}
-{% elif mkap_theme == "blue" %}
-    {% include "themes/blue.html" %}
-{% elif mkap_theme == "none" %}
-    {% include "themes/none.html" %}
-{% endif %}
+{% include "themes/" ~ mkap_theme ~ ".html" %}
 <script>
     window.addEventListener("load", function(event) {
         AsciinemaPlayer.create("{{ file_path }}", document.getElementById("{{ 'asciinema-player-' ~ match_id }}"), {
