@@ -6,7 +6,20 @@
 
 ### Global Usage
 
-*Coming soon...*
+In your `mkdocs.yml` file, in the `plugins` section, you can use variables ([Using plugins](https://www.mkdocs.org/dev-guide/plugins/#using-plugins)):
+
+```yaml
+plugins:
+  - search
+  - asciinema-player:
+      myvar: "example"
+```
+
+Below is a table of available variables:
+
+|  Parameter  |  Value  |                               Description                               |
+| ----------- | ------- | ----------------------------------------------------------------------- |
+|  loglevel   | "INFO"  | Log level of the plugin ("DEBUG", "INFO", "WARNING", "ERROR", "FATAL"). |
 
 ### Individual Usage
 
