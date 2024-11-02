@@ -79,7 +79,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         self.site_url = ""
         self.match_id = 0
 
-    def __init_logging(self) -> None:
+    def init_logging(self) -> None:
         self.log = logging.getLogger(__name__)
         self.log.setLevel(self.loglevel_config.get(self.config.loglevel, logging.INFO))
         self.log.propagate = False
@@ -269,7 +269,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
             MkDocsConfig: The modified MkDocs configuration.
         """
         self.mkdocs_config = config
-        self.__init_logging()
+        self.init_logging()
         self.site_url = urlparse(self.mkdocs_config["site_url"]).path or ""
         self.log.info("[mkdocs-asciinema-player] Adding extra_css and extra_javascript to the config")
         config["extra_css"].append("css/terminal-player.css")
