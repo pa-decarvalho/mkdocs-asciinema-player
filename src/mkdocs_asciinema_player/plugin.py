@@ -160,8 +160,9 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
                     self.log.error(f"[mkdocs-asciinema-player][{self.match_id}] Parameter '{param_name}' should be of type {param_type} but got {type(user_value).__name__}")
                     return False
             elif "default" in param:
-                self.log.debug(f"[mkdocs-asciinema-player][{self.match_id}] Setting default value '{param["default"]}' for parameter '{param_name}'")
-                user_config[param_name] = param["default"]
+                default_param = param["default"] # declaring 'default_param' variable to be able to print it (can't use 'param["default"]' in a f-string in python bellow 3.12)
+                self.log.debug(f"[mkdocs-asciinema-player][{self.match_id}] Setting default value '{default_param}' for parameter '{param_name}'")
+                user_config[param_name] = default_param
 
         return True
 
