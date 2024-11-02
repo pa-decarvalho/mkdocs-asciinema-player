@@ -8,13 +8,16 @@ Author: De Carvalho Philippe-Andre
 import os
 import re
 import shutil
+import logging
 import json
 from json import JSONDecodeError
 from typing import cast, Any, Optional, Match, Dict
 from urllib.parse import urlparse
 from jinja2 import Environment, PackageLoader
+from mkdocs.__main__ import ColorFormatter
 from mkdocs.plugins import BasePlugin
 from mkdocs.config.base import Config
+from mkdocs.config.config_options import Type
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.structure.pages import Page
 from mkdocs.structure.files import Files, File
@@ -24,6 +27,7 @@ class AsciinemaPlayerConfig(Config):
     """
     Configuration class for the AsciinemaPlayerPlugin.
     """
+    loglevel = Type(str, default="INFO")
 
 
 class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
@@ -59,6 +63,13 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
             {"name": "terminal_line_height", "default": "1.33333333"},
         ]
     }
+    loglevel_config = {
+        "DEBUG": logging.DEBUG,
+        "INFO": logging.INFO,
+        "WARNING": logging.WARNING,
+        "ERROR": logging.ERROR,
+        "FATAL": logging.FATAL,
+    }
 
     def __init__(self) -> None:
         """
@@ -67,6 +78,15 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         self.mkdocs_config = MkDocsConfig()
         self.site_url = ""
         self.match_id = 0
+
+    def init_logging(self) -> None:
+        self.log = logging.getLogger(__name__)
+        self.log.setLevel(self.loglevel_config.get(self.config.loglevel, logging.INFO))
+        self.log.propagate = False
+        stream = logging.StreamHandler()
+        stream.setFormatter(ColorFormatter())
+        stream.name = "MkDocsStreamHandler"
+        self.log.addHandler(stream)
 
     def parse_json(self, content: str) -> Any:
         """
@@ -81,7 +101,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         try:
             return json.loads(content)
         except JSONDecodeError as e:
-            print(f"JSONDecodeError: {e}")
+            self.log.error(f"[mkdocs-asciinema-player][{self.match_id}] JSONDecodeError: {e}")
         return None
 
     def render_template(self, data: dict[Any, Any]) -> str:
@@ -94,6 +114,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         Returns:
             str: The rendered template as a string.
         """
+        self.log.info(f"[mkdocs-asciinema-player][{self.match_id}] Rendering template")
         env = Environment(
             loader=PackageLoader("mkdocs_asciinema_player", "templates"),
             lstrip_blocks=True,
@@ -112,11 +133,11 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         Returns:
             bool: True if the configuration is valid, False otherwise.
         """
+        self.log.info(f"[mkdocs-asciinema-player][{self.match_id}] Validating user config: {user_config}")
         parameters = self.default_configs.get("parameters", [])
-
         if "file" not in user_config:
+            self.log.error(f"[mkdocs-asciinema-player][{self.match_id}] Property 'file' not found inside user config")
             return False
-
         themes_dir = os.path.join(os.path.dirname(__file__), "templates", "themes")
         available_themes = [
             os.path.splitext(f)[0] 
@@ -133,12 +154,15 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
                 user_value = user_config[param_name]
                 if param_name == 'mkap_theme':
                     if user_value not in available_themes:
-                        print(f"Invalid theme: {user_value}. Available themes are: {available_themes}")
+                        self.log.error(f"[mkdocs-asciinema-player][{self.match_id}] Invalid theme '{user_value}': Available themes are {available_themes}")
                         return False
                 elif not isinstance(user_value, param_type):
+                    self.log.error(f"[mkdocs-asciinema-player][{self.match_id}] Parameter '{param_name}' should be of type {param_type} but got {type(user_value).__name__}")
                     return False
             elif "default" in param:
-                user_config[param_name] = param["default"]
+                default_param = param["default"] # declaring 'default_param' variable to be able to print it (can't use 'param["default"]' in a f-string in python bellow 3.12)
+                self.log.debug(f"[mkdocs-asciinema-player][{self.match_id}] Setting default value '{default_param}' for parameter '{param_name}'")
+                user_config[param_name] = default_param
 
         return True
 
@@ -152,13 +176,16 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         Returns:
             str: The replacement string.
         """
+        self.log.info(f"[mkdocs-asciinema-player][{self.match_id}] Replacing asciinema-player block for match {self.match_id}")
         parsed_json = self.parse_json(match.group(1))
         if not self.validate_config(parsed_json) or parsed_json is None:
+            self.log.info(f"[mkdocs-asciinema-player][{self.match_id}] Skipping replace")
             return ""
         parsed_json["file_path"] = self.site_url + parsed_json["file"]
         parsed_json["match_id"] = self.match_id
+        template = self.render_template(parsed_json)
         self.match_id += 1
-        return self.render_template(parsed_json)
+        return template
 
     # pylint: disable-next=unused-argument
     def on_page_markdown(self, markdown: str, page: Page, config: MkDocsConfig, files: Files) -> Optional[str]:
@@ -177,8 +204,6 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         Returns:
             Optional[str]: The modified markdown content or None if no modification is needed.
         """
-        self.mkdocs_config = config
-        self.site_url = urlparse(self.mkdocs_config["site_url"]).path or ""
         return re.sub(
             re.compile(r"```asciinema-player\n(.*?)\n```", re.DOTALL),
             self.replace_asciinema_player_match,
@@ -199,6 +224,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         Returns:
             Files: The modified file structure after copying additional files.
         """
+        self.log.info("[mkdocs-asciinema-player] Adding assets files to the build")
         assets_src_dir = os.path.join(os.path.dirname(__file__), "assets")
         css_dest_dir = os.path.join(config["site_dir"], "css")
         js_dest_dir = os.path.join(config["site_dir"], "js")
@@ -243,8 +269,11 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         Returns:
             MkDocsConfig: The modified MkDocs configuration.
         """
+        self.mkdocs_config = config
+        self.init_logging()
+        self.site_url = urlparse(self.mkdocs_config["site_url"]).path or ""
+        self.log.info("[mkdocs-asciinema-player] Adding extra_css and extra_javascript to the config")
         config["extra_css"].append("css/terminal-player.css")
         config["extra_css"].append("css/asciinema-player.css")
         config["extra_javascript"].append("js/asciinema-player.min.js")
-
         return config

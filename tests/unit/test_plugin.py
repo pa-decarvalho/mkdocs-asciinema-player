@@ -1,24 +1,28 @@
 import unittest
+from mkdocs.config.defaults import MkDocsConfig
 from mkdocs_asciinema_player.plugin import AsciinemaPlayerPlugin
 
 
 class TestAsciinemaPlayerPlugin(unittest.TestCase):
+    def setUp(self):
+        self.plugin = AsciinemaPlayerPlugin()
+        self.plugin.config = MkDocsConfig()
+        self.plugin.config.loglevel = "INFO"
+        self.plugin.init_logging()
+
     def test_parse_json_correct(self) -> None:
         correct_json_str = "{ \"name\": \"John\", \"age\": 30, \"city\": \"New York\" }"
-        plugin = AsciinemaPlayerPlugin()
-        result = plugin.parse_json(correct_json_str)
+        result = self.plugin.parse_json(correct_json_str)
         self.assertEqual(result["name"], "John")
         self.assertEqual(result["age"], 30)
         self.assertEqual(result["city"], "New York")
 
     def test_parse_json_incorrect(self) -> None:
         incorrect_json_str = "hello world"
-        plugin = AsciinemaPlayerPlugin()
-        result = plugin.parse_json(incorrect_json_str)
+        result = self.plugin.parse_json(incorrect_json_str)
         self.assertIsNone(result)
 
     def test_render_template(self) -> None:
-        plugin = AsciinemaPlayerPlugin()
         data = {
             "match_id": 0,
             "file_path": "/example-group/project-name/assets/asciinema/test.cast",
@@ -39,7 +43,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
             "terminal_font_family": "Consolas",
             "terminal_line_height": "1.33333333",
         }
-        result = plugin.render_template(data)
+        result = self.plugin.render_template(data)
         self.assertIsNotNone(result)
 
     def test_valid_configuration(self) -> None:
@@ -49,8 +53,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
             "speed": 1.5,
             "theme": "dark"
         }
-        plugin = AsciinemaPlayerPlugin()
-        self.assertTrue(plugin.validate_config(user_config))
+        self.assertTrue(self.plugin.validate_config(user_config))
 
     def test_missing_required_parameter(self) -> None:
         user_config = {
@@ -58,8 +61,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
             "speed": 1.5,
             "theme": "dark"
         }
-        plugin = AsciinemaPlayerPlugin()
-        self.assertFalse(plugin.validate_config(user_config))
+        self.assertFalse(self.plugin.validate_config(user_config))
 
     def test_required_parameter_invalid_type(self) -> None:
         user_config = {
@@ -68,13 +70,11 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
             "speed": 1.5,
             "theme": "dark"
         }
-        plugin = AsciinemaPlayerPlugin()
-        self.assertFalse(plugin.validate_config(user_config))
+        self.assertFalse(self.plugin.validate_config(user_config))
 
     def test_invalid_type(self) -> None:
         user_config = {
             "file": "assets/asciinema/bootstrap.cast",
             "speed": "test"
         }
-        plugin = AsciinemaPlayerPlugin()
-        self.assertFalse(plugin.validate_config(user_config))
+        self.assertFalse(self.plugin.validate_config(user_config))
