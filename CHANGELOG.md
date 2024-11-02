@@ -1,3 +1,13 @@
+## 0.14.0 (2024-11-02)
+
+### Feat
+
+- add better logging system
+
+### Fix
+
+- add new var default_param to be abble to print it in a f-string (below 3.12)
+
 ## 0.13.0 (2024-10-31)
 
 ### Feat
