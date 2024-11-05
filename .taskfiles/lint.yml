@@ -16,6 +16,7 @@ tasks:
     desc: Run mypy
     cmds:
       - MYPYPATH=src poetry run mypy --package mkdocs_asciinema_player --config-file .config/mypy.ini --strict
+      - poetry run mypy .taskfiles/scripts --config-file .config/mypy.ini --strict
 
   yamllint:
     desc: Run yamllint

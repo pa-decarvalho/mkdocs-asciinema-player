@@ -7,3 +7,4 @@ rules:
 
 ignore: |
   .venv
+  .config/dependencies.yml

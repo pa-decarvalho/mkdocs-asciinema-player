@@ -41,6 +41,10 @@ mkdocs = "^1.6.1"
 [tool.poetry.group.dev.dependencies]
 asciinema = "^2.4.0"
 commitizen = "^3.30.0"
+requests = "^2.32.3"
+pyyaml = "^6.0.2"
+types-pyyaml = "^6.0.12.20240917"
+types-requests = "^2.32.0.20241016"
 
 [tool.poetry.group.lint.dependencies]
 bandit = "^1.7.10"
