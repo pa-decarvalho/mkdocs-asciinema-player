@@ -4,62 +4,6 @@
 ==========================================
 */
 
-/* Night theme */
-
-.mkap-window-night {
-    background-color: #37343c;
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 0px 3px #b4b0b8;
-    padding: 4px;
-    margin-bottom: 24px;
-}
-
-.mkap-menu-night {
-    height: 2em;
-    display: flex;
-    align-items: center;
-}
-
-.mkap-button-night {
-    height: 1em;
-    width: 1em;
-    margin-left: 0.3em;
-    border-radius: 50%;
-    border: 1px solid #000;
-}
-
-.mkap-button-group-night {
-    display: flex;
-    width: 15%;
-}
-
-.mkap-button-close-night {
-    background-color: #ff3b47;
-    border-color: #9d252b;
-}
-
-.mkap-button-minimize-night {
-    background-color: #ffc100;
-    border-color: #9d802c;
-}
-
-.mkap-button-zoom-night {
-    background-color: #00d742;
-    border-color: #049931;
-}
-
-.mkap-button-title-night {
-    width: 70%;
-    color: #b4b0b8;
-    text-align: center;
-}
-
-.mkap-player-night {
-    background-color: black;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
 /* Blue theme */
 
 :root {
@@ -146,6 +90,62 @@
 
 .mkap-player-blue .ap-wrapper .ap-player {
     border-radius: 0px;
+}
+
+/* Night theme */
+
+.mkap-window-night {
+    background-color: #37343c;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 0px 3px #b4b0b8;
+    padding: 4px;
+    margin-bottom: 24px;
+}
+
+.mkap-menu-night {
+    height: 2em;
+    display: flex;
+    align-items: center;
+}
+
+.mkap-button-night {
+    height: 1em;
+    width: 1em;
+    margin-left: 0.3em;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+.mkap-button-group-night {
+    display: flex;
+    width: 15%;
+}
+
+.mkap-button-close-night {
+    background-color: #ff3b47;
+    border-color: #9d252b;
+}
+
+.mkap-button-minimize-night {
+    background-color: #ffc100;
+    border-color: #9d802c;
+}
+
+.mkap-button-zoom-night {
+    background-color: #00d742;
+    border-color: #049931;
+}
+
+.mkap-button-title-night {
+    width: 70%;
+    color: #b4b0b8;
+    text-align: center;
+}
+
+.mkap-player-night {
+    background-color: black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 /* None theme */

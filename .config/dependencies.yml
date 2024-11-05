@@ -21,4 +21,5 @@ dependencies:
     - .github/workflows/pages.yml
     - .github/workflows/pypi.yml
     - .github/workflows/test.yml
+    - docs/contributing.md
     download_assets: {}
