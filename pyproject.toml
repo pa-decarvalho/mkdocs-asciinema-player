@@ -56,6 +56,9 @@ ruff = "^0.7.1"
 [tool.poetry.group.test.dependencies]
 pytest = "^8.3.3"
 
+[tool.poetry.group.docs.dependencies]
+mkdocs-awesome-pages-plugin = "^2.9.3"
+
 [tool.poetry.plugins."mkdocs.plugins"]
 asciinema-player = "mkdocs_asciinema_player.plugin:AsciinemaPlayerPlugin"
 

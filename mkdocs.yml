@@ -19,3 +19,4 @@ theme:
 plugins:
   - search
   - asciinema-player
+  - awesome-pages

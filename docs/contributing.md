@@ -1,90 +1,130 @@
 # Contributing
 
-Thank you for considering contributing to the **mkdocs-asciinema-player** project! We appreciate your time and effort in helping to make this project better. Below are some guidelines to help you get started.
+Thank you for considering contributing to the **mkdocs-asciinema-player** project! We appreciate your time and effort in helping to make this project better.
 
-## 📜 Table of Contents
+## Table of Contents
 
-- [🚀 How Can I Contribute?](#how-can-i-contribute)
-    - [🐛 Reporting Bugs](#reporting-bugs)
-    - [💡 Suggesting Enhancements](#suggesting-enhancements)
-    - [🔄 Pull Requests](#pull-requests)
-- [🛠️ Setting Up the Development Environment](#setting-up-the-development-environment)
-    - [🌐 Using Gitpod](#using-gitpod)
-    - [💻 Local Development](#local-development)
-- [📝 Coding Guidelines](#coding-guidelines)
-- [📄 License](#license)
+- [How Can I Contribute?](#how-can-i-contribute)
+    - [Reporting Bugs](#reporting-bugs)
+    - [Suggesting Enhancements](#suggesting-enhancements)
+    - [Pull Requests](#pull-requests)
+- [Development Setup](#development-setup)
+    - [Using Gitpod](#using-gitpod)
+    - [Local Development](#local-development)
+- [Project Guidelines](#project-guidelines)
+    - [Coding Standards](#coding-standards)
+    - [Creating Themes](#creating-themes)
+- [License](#license)
 
-## 🚀 How Can I Contribute?
+## How Can I Contribute?
 
-### 🐛 Reporting Bugs
+### Reporting Bugs
 
-If you find a bug, please report it by creating an issue on our [GitHub Issues](https://github.com/pa-decarvalho/mkdocs-asciinema-player/issues) page. Provide detailed information to help us understand the problem and how to reproduce it.
+- Create an issue on our [GitHub Issues](https://github.com/pa-decarvalho/mkdocs-asciinema-player/issues) page
+- Provide detailed information about:
+    - Steps to reproduce the bug
+    - Expected behavior
+    - Actual behavior
+    - Environment details (OS, browser, etc.)
 
-### 💡 Suggesting Enhancements
+### Suggesting Enhancements
 
-We welcome suggestions for new features or improvements. To suggest an enhancement, please open an issue on our [GitHub Issues](https://github.com/pa-decarvalho/mkdocs-asciinema-player/issues) page, clearly explaining the enhancement and how it could benefit the project.
+- Open an issue on our [GitHub Issues](https://github.com/pa-decarvalho/mkdocs-asciinema-player/issues) page
+- Clearly describe:
+    - The proposed enhancement
+    - Why it would be useful
+    - How it should work
 
-### 🔄 Pull Requests
+### Pull Requests
 
-If you'd like to contribute code, please follow these steps:
+Follow these steps to submit your contributions:
 
-- **Fork the repository** to your GitHub account.
-- **Clone your fork** to your local machine:
+- Fork the repository to your GitHub account
+- Clone your fork:
+
 ```sh
 git clone https://github.com/your-username/mkdocs-asciinema-player.git
 ```
-- **Create a new branch** for your feature or bugfix:
+
+- Create a new branch:
+
 ```sh
 git checkout -b feature/your-feature-name
 ```
-- **Make your changes** and commit them with clear and concise commit messages (please use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)).
+
+- Make and commit your changes:
+
 ```sh
 git add . && git commit -m "feat: my new feature"
 ```
-- **Push your branch** to your forked repository:
+
+- Push your branch:
+
 ```sh
 git push origin feature/your-feature-name
 ```
-- **Open a Pull Request** on the main repository, describing your changes in detail.
 
-Please ensure your code follows the project's [coding guidelines](#coding-guidelines) and includes appropriate tests.
+- Open a Pull Request on the main repository
 
-## 🛠️ Setting Up the Development Environment
+> **Note**: Please use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for your commit messages.
 
-To set up the development environment for `mkdocs-asciinema-player`, **fork the repository** to your GitHub account.
+## Development Setup
 
-### 🌐 Using Gitpod
+### Using Gitpod
 
-You can start developing the project in an online environment using [Gitpod](https://gitpod.io).
+- Read the [Getting Started Guide](https://www.gitpod.io/docs/introduction/getting-started) from Gitpod
+- Open your forked project in Gitpod
 
-Please read the official [Getting started](https://www.gitpod.io/docs/introduction/getting-started) from Gitpod documentation and choose your forked project.
+### Local Development
 
-### 💻 Local Development
+Prerequisites:
 
-If you prefer to set up the project on your local machine, follow these steps:
+- Python >= 3.9
+- [Task](https://taskfile.dev/) >= 3.39.2
 
-- Install dependencies.
-    - Python >= PYTHON_MIN_VERSION (see [taskfile.yml](https://github.com/pa-decarvalho/mkdocs-asciinema-player/blob/main/taskfile.yml#L8))
-    - [Task](https://taskfile.dev/) >= TASK_MIN_VERSION (see [taskfile.yml](https://github.com/pa-decarvalho/mkdocs-asciinema-player/blob/main/taskfile.yml#L9))
-- Clone the forked repository:
+Setup steps:
+
+- Clone your fork:
+
 ```sh
 git clone https://github.com/your-username/mkdocs-asciinema-player.git
 ```
+
 - Run the bootstrap command:
+
 ```sh
 task bootstrap
 ```
 
-## 📝 Coding Guidelines
+## Project Guidelines
 
-Please follow these coding standards when contributing:
+### Coding Standards
 
-- PEP 8 for Python code.
-- Write clear and descriptive commit messages (please use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)).
-- Include tests for any new functionality or bug fixes.
-- Update the documentation as soon as possible.
-- Ensure that all tests pass before submitting a pull request.
+- Follow PEP 8 for Python code
+- Write clear and descriptive commit messages using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- Include tests for new functionality
+- Keep documentation up-to-date
+- Ensure all tests pass before submitting PR
 
-## 📄 License
+### Creating Themes
+
+To create a new theme for the asciinema player:
+
+- Create a `<my-new-theme>.html` file in:
+
+```sh
+src/mkdocs_asciinema_player/templates/themes
+```
+
+- Add CSS styles in the `src/mkdocs_asciinema_player/assets/terminal-player.css` file, keeping the styles ordered alphabetically by theme name.
+
+- Update documentation:
+
+```sh
+task update:docs
+```
+
+## License
 
 By contributing, you agree that your contributions will be licensed under the project's [MIT License](https://github.com/pa-decarvalho/mkdocs-asciinema-player/blob/main/LICENSE).
+```
