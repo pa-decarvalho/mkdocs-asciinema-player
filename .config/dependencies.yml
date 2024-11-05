@@ -1,0 +1,24 @@
+---
+dependencies:
+  asciinema-player:
+    repo: asciinema/asciinema-player
+    version: 3.8.1
+    update_files:
+    - taskfile.yml
+    - docs/index.md
+    download_assets:
+      path: src/mkdocs_asciinema_player/assets
+      files:
+      - asciinema-player.css
+      - asciinema-player.min.js
+  task:
+    repo: go-task/task
+    version: 3.39.2
+    update_files:
+    - taskfile.yml
+    - .gitpod/Dockerfile
+    - .github/workflows/lint.yml
+    - .github/workflows/pages.yml
+    - .github/workflows/pypi.yml
+    - .github/workflows/test.yml
+    download_assets: {}
