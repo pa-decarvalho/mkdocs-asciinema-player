@@ -8,7 +8,14 @@ tasks:
     cmds:
       - poetry run python .taskfiles/scripts/update_dependencies.py
 
+  docs:
+    desc: Update docs
+    silent: true
+    cmds:
+      - poetry run python .taskfiles/scripts/update_docs.py
+
   all:
     desc: Run all updates
     cmds:
       - task: dependencies
+      - task: docs
