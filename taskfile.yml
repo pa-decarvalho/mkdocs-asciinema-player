@@ -3,7 +3,7 @@ version: "3"
 
 vars:
   PYTHON_MIN_VERSION: 3.9
-  TASK_MIN_VERSION: 3.39.2
+  TASK_MIN_VERSION: 3.40.0
   ASCIINEMA_PLAYER_VERSION: 3.8.1
 
 includes:

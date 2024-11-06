@@ -1,9 +1,11 @@
 # mkdocs-asciinema-player
 
-[![documentation](https://img.shields.io/badge/docs-mkdocs--asciinema--player-blue.svg?style=flat)](https://pa-decarvalho.github.io/mkdocs-asciinema-player/)
+[![gitpod-ready-to-code](https://img.shields.io/badge/gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/pa-decarvalho/mkdocs-asciinema-player)
 [![test](https://github.com/pa-decarvalho/mkdocs-asciinema-player/workflows/test/badge.svg)](https://github.com/pa-decarvalho/mkdocs-asciinema-player/actions)
 [![pypi](https://img.shields.io/pypi/v/mkdocs-asciinema-player.svg)](https://pypi.org/project/mkdocs-asciinema-player/)
+[![pyversions](https://img.shields.io/pypi/pyversions/mkdocs-asciinema-player.svg)](https://pypi.python.org/pypi/mkdocs-asciinema-player)
 [![downloads](https://img.shields.io/pypi/dm/mkdocs-asciinema-player.svg)](https://pypi.org/project/mkdocs-asciinema-player/)
+[![license](https://img.shields.io/pypi/l/mkdocs-asciinema-player.svg)](https://pypi.python.org/pypi/mkdocs-asciinema-player)
 
 A Mkdocs Plugin to include asciinema player in your documentation.
 
