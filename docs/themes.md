@@ -60,3 +60,23 @@ Example:
 }
 ```
 
+## Penguin Theme
+
+```asciinema-player
+{
+    "file": "assets/asciinema/asciinema_example.cast",
+    "mkap_theme": "penguin",
+    "auto_play": true
+}
+```
+
+Example:
+
+```json
+{
+    "file": "assets/asciinema/asciinema_example.cast",
+    "mkap_theme": "penguin",
+    "auto_play": true
+}
+```
+

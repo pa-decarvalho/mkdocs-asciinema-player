@@ -153,3 +153,50 @@
 .mkap-player-none {
     margin-bottom: 24px;
 }
+
+/* Penguin theme */
+
+.mkap-window-penguin {
+    background: linear-gradient(#504b45 0%,#3c3b37 100%);
+    border-radius: 10px;
+    margin-bottom: 24px;
+}
+
+.mkap-menu-penguin {
+    height: 2em;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.mkap-button-penguin {
+    margin-left: 0.1em;
+    border-radius: 50%;
+}
+
+.mkap-button-group-penguin {
+    display: flex;
+    scale: 80%;
+}
+
+.mkap-button-zoom-penguin {
+    background: linear-gradient(#7d7871 0%, #595953 100%);
+}
+
+.mkap-button-minimize-penguin {
+    background: linear-gradient(#7d7871 0%, #595953 100%);
+}
+
+.mkap-button-close-penguin {
+    background: linear-gradient(#f37458 0%, #de4c12 100%);
+}
+
+.mkap-button-title-penguin {
+    width: 80%;
+    color: #d5d0ce;
+    text-align: center;
+}
+
+.mkap-player-penguin {
+    background-color: black;
+}
