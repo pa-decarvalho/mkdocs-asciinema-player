@@ -28,6 +28,11 @@ tasks:
     cmds:
       - poetry run ruff check --config .config/ruff.toml
 
+  hadolint:
+    desc: Run hadolint
+    cmds:
+      - docker run --rm -i hadolint/hadolint < .gitpod/Dockerfile
+
   all:
     desc: Run all linters
     cmds:
@@ -36,3 +41,4 @@ tasks:
       - task: mypy
       - task: yamllint
       - task: ruff
+      - task: hadolint
