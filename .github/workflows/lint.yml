@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        linter: ["bandit", "djlint", "mypy", "yamllint", "ruff"]
+        linter: ["bandit", "djlint", "mypy", "yamllint", "ruff", "hadolint"]
     env:
       TASK_VERSION: 3.40.0
     steps:
