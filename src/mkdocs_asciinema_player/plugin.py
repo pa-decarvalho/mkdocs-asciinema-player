@@ -14,6 +14,7 @@ from json import JSONDecodeError
 from typing import cast, Any, Optional, Match, Dict
 from urllib.parse import urlparse
 from jinja2 import Environment, PackageLoader
+from pathlib import Path
 from mkdocs.__main__ import ColorFormatter
 from mkdocs.plugins import BasePlugin
 from mkdocs.config.base import Config
@@ -190,7 +191,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
     # pylint: disable-next=unused-argument
     def on_page_markdown(self, markdown: str, page: Page, config: MkDocsConfig, files: Files) -> Optional[str]:
         """
-        Callback function called when processing page markdown.
+        Return the modified markdown page.
 
         This function searches for Asciinema player blocks in the markdown content and replaces them with
         the rendered template containing the specified Asciinema player configuration.
@@ -207,12 +208,12 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         return re.sub(
             re.compile(r"```asciinema-player\n(.*?)\n```", re.DOTALL),
             self.replace_asciinema_player_match,
-            markdown
+            markdown,
         )
 
     def on_files(self, files: Files, config: Config) -> Files:
         """
-        Callback function called when copying additional files during the MkDocs build process.
+        Return the modified file structure.
 
         This function is responsible for copying necessary files, such as CSS and JavaScript files,
         required for embedding the Asciinema player in the MkDocs documentation.
@@ -223,12 +224,13 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
         Returns:
             Files: The modified file structure after copying additional files.
+
         """
         self.log.info("[mkdocs-asciinema-player] Adding assets files to the build")
-        assets_src_dir = os.path.join(os.path.dirname(__file__), "assets")
-        css_dest_dir = os.path.join(config["site_dir"], "css")
-        js_dest_dir = os.path.join(config["site_dir"], "js")
-        icons_dest_dir = os.path.join(css_dest_dir, "icons")
+        assets_src_dir = str(Path(__file__).parent / "assets")
+        css_dest_dir = str(Path(config["site_dir"]) / "css")
+        js_dest_dir = str(Path(config["site_dir"]) / "js")
+        icons_dest_dir = str(Path(css_dest_dir) / "icons")
 
         terminal_player_css_file_obj = File(
             path="terminal-player.css",
@@ -258,7 +260,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
     def on_config(self, config: MkDocsConfig) -> MkDocsConfig:
         """
-        Callback function called to modify the MkDocs configuration.
+        Return the modified version of the MkDocs configuration.
 
         This function updates the MkDocs configuration to include the paths
         of the copied CSS and JavaScript files required for Asciinema player.
@@ -268,6 +270,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
         Returns:
             MkDocsConfig: The modified MkDocs configuration.
+
         """
         self.mkdocs_config = config
         self.init_logging()
