@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mkdocs-asciinema-player"
-version = "0.15.0"
+version = "0.15.1"
 description = "A Mkdocs Plugin to include asciinema player in your documentation."
 license = "MIT"
 authors = [

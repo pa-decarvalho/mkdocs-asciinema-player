@@ -1,3 +1,9 @@
+## 0.15.1 (2024-11-13)
+
+### Fix
+
+- update ruff configuration and refactor some code
+
 ## 0.15.0 (2024-11-06)
 
 ### Feat
