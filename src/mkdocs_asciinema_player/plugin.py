@@ -229,7 +229,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         page: Page,  # noqa: ARG002
         config: MkDocsConfig,  # noqa: ARG002
         files: Files,  # noqa: ARG002
-    ) -> str | None:
+    ) -> str:
         """
         Return the modified markdown page.
 
