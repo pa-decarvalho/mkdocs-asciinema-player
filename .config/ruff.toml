@@ -37,7 +37,7 @@ target-version = "py312"
 
 [lint]
 select = ["ALL"]
-ignore = ["D203", "D212"]
+ignore = ["D203", "D212", "RUF012", "ANN401"]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
@@ -47,6 +47,8 @@ unfixable = []
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [lint.extend-per-file-ignores]
+".taskfiles/scripts/update_dependencies.py" = ["INP001", "T201", "BLE001"]
+".taskfiles/scripts/update_docs.py" = ["INP001"]
 "__init__.py" = ["D104"]
 "tests/unit/test_plugin.py" = ["S101"]
 

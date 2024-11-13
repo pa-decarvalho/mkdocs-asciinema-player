@@ -1,6 +1,9 @@
 """All tests for AsciinemaPlayerPlugin class."""
+
 import unittest
+
 from mkdocs.config.defaults import MkDocsConfig
+
 from mkdocs_asciinema_player.plugin import AsciinemaPlayerPlugin
 
 
