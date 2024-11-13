@@ -27,6 +27,7 @@ tasks:
     desc: Run ruff
     cmds:
       - poetry run ruff check --config .config/ruff.toml
+      - poetry run ruff format --config .config/ruff.toml --check --diff
 
   hadolint:
     desc: Run hadolint
