@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://pa-decarvalho.github.io/mkdocs-asciinema-player/setup/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Setup - MkDocs asciinema-player plugin</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/terminal-player.css" rel="stylesheet" />
+        <link href="../css/asciinema-player.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Setup";
+        var mkdocs_page_input_path = "setup.md";
+        var mkdocs_page_url = "/mkdocs-asciinema-player/setup/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> MkDocs asciinema-player plugin
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">MkDocs Asciinema Player</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Setup</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#global-usage">Global Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#individual-usage">Individual Usage</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../themes/">Themes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contributing/">Contributing</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">MkDocs asciinema-player plugin</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Setup</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/pa-decarvalho/mkdocs-asciinema-player/blob/main/docs/setup.md">Edit on mkdocs-asciinema-player</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="setup">Setup</h1>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<h3 id="global-usage">Global Usage</h3>
+<p>In your <code>mkdocs.yml</code> file, in the <code>plugins</code> section, you can use variables (<a href="https://www.mkdocs.org/dev-guide/plugins/#using-plugins">Using plugins</a>):</p>
+<pre><code class="language-yaml">plugins:
+  - search
+  - asciinema-player:
+      myvar: &quot;example&quot;
+</code></pre>
+<p>Below is a table of available variables:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loglevel</td>
+<td>"INFO"</td>
+<td>Log level of the plugin ("DEBUG", "INFO", "WARNING", "ERROR", "FATAL").</td>
+</tr>
+</tbody>
+</table>
+<h3 id="individual-usage">Individual Usage</h3>
+<p>To use individual configurations, create a JSON object like the example below:</p>
+<pre><code class="language-json">{
+    &quot;file&quot;: &quot;assets/asciinema/bootstrap.cast&quot;,
+    &quot;cols&quot;: 80,
+    &quot;auto_play&quot;: &quot;true&quot;
+}
+</code></pre>
+<p>Below is a table of available configuration parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file</td>
+<td>-</td>
+<td>Path to the cast file.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>"Terminal"</td>
+<td>Title of the terminal.</td>
+</tr>
+<tr>
+<td>mkap_theme</td>
+<td>"night"</td>
+<td>Theme of the terminal.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#cols">cols</a></td>
+<td>80</td>
+<td>Number of columns in the terminal.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#rows">rows</a></td>
+<td>24</td>
+<td>Number of rows in the terminal.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#autoplay">auto_play</a></td>
+<td>false</td>
+<td>Automatic playback upon load.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#preload">preload</a></td>
+<td>false</td>
+<td>Preload the cast file on load.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#loop">loop</a></td>
+<td>false</td>
+<td>Enable looped playback.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#startat">start_at</a></td>
+<td>0</td>
+<td>Start playback at a specific time.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#speed">speed</a></td>
+<td>1</td>
+<td>Playback speed multiplier.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#theme">theme</a></td>
+<td>"asciinema"</td>
+<td>Terminal theme for rendering.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#fit">fit</a></td>
+<td>"width"</td>
+<td>Terminal fit mode.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#controls">controls</a></td>
+<td>"auto"</td>
+<td>Display controls automatically.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#pauseonmarkers">pause_on_markers</a></td>
+<td>false</td>
+<td>Pause playback on markers.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#terminalfontsize">terminal_font_size</a></td>
+<td>"small"</td>
+<td>Font size of the terminal.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#terminalfontfamily">terminal_font_family</a></td>
+<td>"Consolas"</td>
+<td>Font family of the terminal.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#terminallineheight">terminal_line_height</a></td>
+<td>"1.33333333"</td>
+<td>Line height of the terminal.</td>
+</tr>
+</tbody>
+</table>
+<p>For more detailed information and additional options, refer to the <a href="https://github.com/asciinema/asciinema-player?tab=readme-ov-file#options">official documentation</a>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../getting-started/" class="btn btn-neutral float-left" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../themes/" class="btn btn-neutral float-right" title="Themes">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/pa-decarvalho/mkdocs-asciinema-player" class="fa fa-code-fork" style="color: #fcfcfc"> mkdocs-asciinema-player</a>
+        </span>
+    
+    
+      <span><a href="../getting-started/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../themes/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+      <script src="../js/asciinema-player.min.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
