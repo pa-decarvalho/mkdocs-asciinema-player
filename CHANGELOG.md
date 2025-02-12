@@ -1,3 +1,9 @@
+## 0.16.0 (2025-02-12)
+
+### Feat
+
+- update asciinema player to 3.9.0 and add gitpod flex support
+
 ## 0.15.1 (2024-11-13)
 
 ### Fix
