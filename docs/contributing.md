@@ -80,7 +80,7 @@ git push origin feature/your-feature-name
 Prerequisites:
 
 - Python >= 3.9
-- [Task](https://taskfile.dev/) >= 3.40.0
+- [Task](https://taskfile.dev/) >= 3.41.0
 
 Setup steps:
 

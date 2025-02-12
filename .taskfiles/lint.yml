@@ -32,7 +32,7 @@ tasks:
   hadolint:
     desc: Run hadolint
     cmds:
-      - docker run --rm -i hadolint/hadolint < .gitpod/Dockerfile
+      - hadolint .devcontainer/Dockerfile
 
   all:
     desc: Run all linters
