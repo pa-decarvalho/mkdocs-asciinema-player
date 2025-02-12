@@ -1,7 +1,6 @@
-# hadolint ignore=DL3006
-FROM gitpod/workspace-full
+FROM mcr.microsoft.com/devcontainers/python:3.12
 
-ARG TASK_VERSION=3.40.0
+ARG TASK_VERSION=3.41.0
 
 USER root
 
@@ -17,4 +16,6 @@ RUN apt-get update -y && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     rm google-chrome-stable_current_amd64.deb
 
-USER gitpod
+RUN pip install --upgrade pip poetry
+
+USER vscode

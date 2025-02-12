@@ -22,3 +22,6 @@ dist/
 # MkDocs
 public
 site
+
+# DevContainer
+core
