@@ -29,6 +29,7 @@ from mkdocs.structure.pages import Page
 class AsciinemaPlayerConfig(Config):
     """Configuration class for the AsciinemaPlayerPlugin."""
 
+    plugin_name = "[mkdocs-asciinema-player]"
     loglevel = Type(str, default="INFO")
 
 
@@ -95,7 +96,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         except JSONDecodeError:
             self.log.exception(
                 "%s[%s] JSONDecodeError",
-                "[mkdocs-asciinema-player]",
+                self.config.plugin_name,
                 self.match_id,
             )
             return None
@@ -114,7 +115,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         """
         self.log.info(
             "%s[%s] Rendering template",
-            "[mkdocs-asciinema-player]",
+            self.config.plugin_name,
             self.match_id,
         )
         env = Environment(
@@ -138,7 +139,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         """
         self.log.info(
             "%s[%s] Validating user config: %s",
-            "[mkdocs-asciinema-player]",
+            self.config.plugin_name,
             self.match_id,
             user_config,
         )
@@ -146,7 +147,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         if "file" not in user_config:
             self.log.error(
                 "%s[%s] Property 'file' not found inside user config",
-                "[mkdocs-asciinema-player]",
+                self.config.plugin_name,
                 self.match_id,
             )
             return False
@@ -164,7 +165,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
                     if user_value not in available_themes:
                         self.log.error(
                             "%s[%s] Invalid theme '%s': Available themes are %s",
-                            "[mkdocs-asciinema-player]",
+                            self.config.plugin_name,
                             self.match_id,
                             user_value,
                             available_themes,
@@ -173,7 +174,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
                 elif not isinstance(user_value, param_type):
                     self.log.error(
                         "%s[%s] Parameter '%s' should be of type %s but got %s",
-                        "[mkdocs-asciinema-player]",
+                        self.config.plugin_name,
                         self.match_id,
                         param_name,
                         param_type,
@@ -183,7 +184,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
             elif "default" in param:
                 self.log.debug(
                     "%s[%s] Setting default value '%s' for parameter '%s'",
-                    "[mkdocs-asciinema-player]",
+                    self.config.plugin_name,
                     self.match_id,
                     param["default"],
                     param_name,
@@ -205,7 +206,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         """
         self.log.info(
             "%s[%s] Replacing asciinema-player block for match %s",
-            "[mkdocs-asciinema-player]",
+            self.config.plugin_name,
             self.match_id,
             self.match_id,
         )
@@ -213,7 +214,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         if not self.validate_config(parsed_json) or parsed_json is None:
             self.log.info(
                 "%s[%s] Skipping replace",
-                "[mkdocs-asciinema-player]",
+                self.config.plugin_name,
                 self.match_id,
             )
             return ""
@@ -321,7 +322,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         self.site_url = urlparse(self.mkdocs_config["site_url"]).path or ""
         self.log.info(
             "%s Adding extra_css and extra_javascript to the config",
-            "[mkdocs-asciinema-player]",
+            self.config.plugin_name,
         )
         config["extra_css"].append("css/terminal-player.css")
         config["extra_css"].append("css/asciinema-player.css")
