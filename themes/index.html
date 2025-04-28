@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://pa-decarvalho.github.io/mkdocs-asciinema-player/themes/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Themes - MkDocs asciinema-player plugin</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/terminal-player.css" rel="stylesheet" />
+        <link href="../css/asciinema-player.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Themes";
+        var mkdocs_page_input_path = "themes.md";
+        var mkdocs_page_url = "/mkdocs-asciinema-player/themes/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> MkDocs asciinema-player plugin
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">MkDocs Asciinema Player</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../setup/">Setup</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Themes</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#blue-theme">Blue Theme</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#night-theme">Night Theme</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#none-theme">None Theme</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#penguin-theme">Penguin Theme</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contributing/">Contributing</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">MkDocs asciinema-player plugin</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Themes</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/pa-decarvalho/mkdocs-asciinema-player/blob/main/docs/themes.md">Edit on mkdocs-asciinema-player</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="themes">Themes</h1>
+<h2 id="blue-theme">Blue Theme</h2>
+<div class="mkap-window-blue">
+    <div class="mkap-title-bar-blue">
+        <div class="mkap-title-bar-text-blue">Terminal</div>
+        <div class="mkap-title-bar-controls-blue">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+        </div>
+    </div>
+    <div class="mkap-window-body-blue">
+        <div class="mkap-player-blue" id="asciinema-player-1"></div>
+    </div>
+</div>
+<script>
+    window.addEventListener("load", function(event) {
+        AsciinemaPlayer.create("/mkdocs-asciinema-player/assets/asciinema/asciinema_example.cast", document.getElementById("asciinema-player-1"), {
+            cols: 80,
+            rows: 24,
+            autoPlay: true,
+            preload: false,
+            loop: false,
+            startAt: "0:00",
+            speed: 1.0,
+            theme: "asciinema",
+            fit: "width",
+            controls: "auto",
+            pauseOnMarkers: false,
+            terminalFontSize: "small",
+            terminalFontFamily: "",
+            terminalLineHeight: 1.33333333,
+        });
+    });
+</script>
+
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;file&quot;: &quot;assets/asciinema/asciinema_example.cast&quot;,
+    &quot;mkap_theme&quot;: &quot;blue&quot;,
+    &quot;auto_play&quot;: true
+}
+</code></pre>
+<h2 id="night-theme">Night Theme</h2>
+<div class="mkap-window-night">
+    <div class="mkap-menu-night">
+        <div class="mkap-button-group-night">
+            <div class="mkap-button-night mkap-button-close-night"></div>
+            <div class="mkap-button-night mkap-button-minimize-night"></div>
+            <div class="mkap-button-night mkap-button-zoom-night"></div>
+        </div>
+        <div class="mkap-button-title-night">Terminal</div>
+        <div class="mkap-button-group-night">&nbsp;</div>
+    </div>
+    <div class="mkap-player-night" id="asciinema-player-2"></div>
+</div>
+<script>
+    window.addEventListener("load", function(event) {
+        AsciinemaPlayer.create("/mkdocs-asciinema-player/assets/asciinema/asciinema_example.cast", document.getElementById("asciinema-player-2"), {
+            cols: 80,
+            rows: 24,
+            autoPlay: true,
+            preload: false,
+            loop: false,
+            startAt: "0:00",
+            speed: 1.0,
+            theme: "asciinema",
+            fit: "width",
+            controls: "auto",
+            pauseOnMarkers: false,
+            terminalFontSize: "small",
+            terminalFontFamily: "",
+            terminalLineHeight: 1.33333333,
+        });
+    });
+</script>
+
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;file&quot;: &quot;assets/asciinema/asciinema_example.cast&quot;,
+    &quot;mkap_theme&quot;: &quot;night&quot;,
+    &quot;auto_play&quot;: true
+}
+</code></pre>
+<h2 id="none-theme">None Theme</h2>
+<div class="mkap-player-none" id="asciinema-player-3"></div>
+<script>
+    window.addEventListener("load", function(event) {
+        AsciinemaPlayer.create("/mkdocs-asciinema-player/assets/asciinema/asciinema_example.cast", document.getElementById("asciinema-player-3"), {
+            cols: 80,
+            rows: 24,
+            autoPlay: true,
+            preload: false,
+            loop: false,
+            startAt: "0:00",
+            speed: 1.0,
+            theme: "asciinema",
+            fit: "width",
+            controls: "auto",
+            pauseOnMarkers: false,
+            terminalFontSize: "small",
+            terminalFontFamily: "",
+            terminalLineHeight: 1.33333333,
+        });
+    });
+</script>
+
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;file&quot;: &quot;assets/asciinema/asciinema_example.cast&quot;,
+    &quot;mkap_theme&quot;: &quot;none&quot;,
+    &quot;auto_play&quot;: true
+}
+</code></pre>
+<h2 id="penguin-theme">Penguin Theme</h2>
+<div class="mkap-window-penguin">
+    <div class="mkap-menu-penguin">
+        <div class="mkap-button-group-penguin">
+            <button class="mkap-button-penguin mkap-button-minimize-penguin">─</button>
+            <button class="mkap-button-penguin mkap-button-zoom-penguin">◻</button>
+            <button class="mkap-button-penguin mkap-button-close-penguin">✕</button>
+        </div>
+        <div class="mkap-button-title-penguin">Terminal</div>
+        <div class="mkap-button-group-penguin">&nbsp;</div>
+    </div>
+    <div class="mkap-player-penguin" id="asciinema-player-4"></div>
+</div>
+<script>
+    window.addEventListener("load", function(event) {
+        AsciinemaPlayer.create("/mkdocs-asciinema-player/assets/asciinema/asciinema_example.cast", document.getElementById("asciinema-player-4"), {
+            cols: 80,
+            rows: 24,
+            autoPlay: true,
+            preload: false,
+            loop: false,
+            startAt: "0:00",
+            speed: 1.0,
+            theme: "asciinema",
+            fit: "width",
+            controls: "auto",
+            pauseOnMarkers: false,
+            terminalFontSize: "small",
+            terminalFontFamily: "",
+            terminalLineHeight: 1.33333333,
+        });
+    });
+</script>
+
+<p>Example:</p>
+<pre><code class="language-json">{
+    &quot;file&quot;: &quot;assets/asciinema/asciinema_example.cast&quot;,
+    &quot;mkap_theme&quot;: &quot;penguin&quot;,
+    &quot;auto_play&quot;: true
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../setup/" class="btn btn-neutral float-left" title="Setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../contributing/" class="btn btn-neutral float-right" title="Contributing">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/pa-decarvalho/mkdocs-asciinema-player" class="fa fa-code-fork" style="color: #fcfcfc"> mkdocs-asciinema-player</a>
+        </span>
+    
+    
+      <span><a href="../setup/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../contributing/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+      <script src="../js/asciinema-player.min.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
