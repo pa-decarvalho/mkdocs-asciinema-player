@@ -1,3 +1,9 @@
+## 0.17.0 (2025-04-28)
+
+### Feat
+
+- refactor all logging prints
+
 ## 0.16.0 (2025-02-12)
 
 ### Feat
