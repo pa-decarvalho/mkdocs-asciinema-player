@@ -14,6 +14,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
         """Set up the test environment before each test method."""
         self.plugin = AsciinemaPlayerPlugin()
         self.plugin.config = MkDocsConfig()
+        self.plugin.config.plugin_name = "[mkdocs-asciinema-player]"
         self.plugin.config.loglevel = "INFO"
         self.plugin.init_logging()
 
