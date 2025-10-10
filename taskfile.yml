@@ -3,8 +3,8 @@ version: "3"
 
 vars:
   PYTHON_MIN_VERSION: 3.9
-  TASK_MIN_VERSION: 3.41.0
-  ASCIINEMA_PLAYER_VERSION: 3.9.0
+  TASK_MIN_VERSION: 3.45.4
+  ASCIINEMA_PLAYER_VERSION: 3.11.1
 
 includes:
   check: .taskfiles/check.yml

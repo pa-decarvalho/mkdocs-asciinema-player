@@ -79,4 +79,3 @@ Example:
     "auto_play": true
 }
 ```
-
