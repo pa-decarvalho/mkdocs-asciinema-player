@@ -2,7 +2,7 @@
 dependencies:
   asciinema-player:
     repo: asciinema/asciinema-player
-    version: 3.9.0
+    version: 3.11.1
     update_files:
     - taskfile.yml
     - docs/index.md
@@ -13,7 +13,7 @@ dependencies:
       - asciinema-player.min.js
   task:
     repo: go-task/task
-    version: 3.41.0
+    version: 3.45.4
     update_files:
     - taskfile.yml
     - .devcontainer/Dockerfile

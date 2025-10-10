@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/devcontainers/python:3.12
 
-ARG TASK_VERSION=3.41.0
+ARG TASK_VERSION=3.45.4
 ARG HADOLINT_VERSION=2.12.0
 
 USER root

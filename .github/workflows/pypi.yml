@@ -10,7 +10,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      TASK_VERSION: 3.41.0
+      TASK_VERSION: 3.45.4
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4

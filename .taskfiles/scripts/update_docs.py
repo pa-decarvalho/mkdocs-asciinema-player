@@ -21,7 +21,7 @@ def generate_theme_documentation(
 
     """
     # Get all .html files from the directory
-    theme_files = [f for f in os.listdir(templates_dir) if f.endswith(".html")]
+    theme_files = [f for f in os.listdir(templates_dir) if f.endswith(".html")]  # noqa: PTH208
 
     # Extract theme names (without .html extension)
     themes = sorted([Path(f).stem for f in theme_files])

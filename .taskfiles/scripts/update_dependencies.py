@@ -91,7 +91,7 @@ class DependencyManager:
                     response.raise_for_status()
                     file_path = temp_dir + "/" + filename
                     with Path(file_path).open("wb") as f:
-                        for chunk in response.iter_content(chunk_size=8192):
+                        for chunk in response.iter_content(chunk_size=8192):  # noqa: FURB122
                             f.write(chunk)
                 assets_path = Path(path)
                 for filename in files:
