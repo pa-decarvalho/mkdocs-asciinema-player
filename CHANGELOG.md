@@ -1,3 +1,9 @@
+## 0.18.0 (2025-10-10)
+
+### Feat
+
+- update asciinema player to 3.11.1
+
 ## 0.17.0 (2025-04-28)
 
 ### Feat
