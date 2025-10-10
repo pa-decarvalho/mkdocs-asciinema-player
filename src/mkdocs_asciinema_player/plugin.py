@@ -155,7 +155,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         available_themes = [p.stem for p in themes_dir.glob("*.html")]
 
         for param in parameters:
-            param = cast(dict[str, Any], param)
+            param = cast("dict[str, Any]", param)
             param_name = param["name"]
             param_type = type(param["default"])
 
