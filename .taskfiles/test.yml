@@ -5,5 +5,7 @@ tasks:
   pytest:
     desc: Run pytest command
     silent: true
+    var:
+      PYTHON_VERSION: 3.12
     cmds:
-      - poetry run pytest -vv
+      - uv run --python {{.PYTHON_VERSION}} pytest -vv

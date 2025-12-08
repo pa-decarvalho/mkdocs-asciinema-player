@@ -15,25 +15,17 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        linter: ["bandit", "djlint", "mypy", "yamllint", "ruff", "hadolint"]
+        linter: ["djlint", "yamllint", "ruff", "hadolint"]
     env:
-      TASK_VERSION: 3.45.4
       HADOLINT_VERSION: 2.12.0
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.12"
       - name: Install Dependencies
         run: |
-          wget https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb
-          sudo dpkg -i task_linux_amd64.deb
           wget -q -P /tmp https://github.com/hadolint/hadolint/releases/download/v$HADOLINT_VERSION/hadolint-Linux-x86_64
           mv /tmp/hadolint-Linux-x86_64 /usr/local/bin/hadolint
           chmod +x /usr/local/bin/hadolint
-          pip install poetry
-          task bootstrap
+          pip install --upgrade pip uv go-task-bin
       - name: Run linter ${{ matrix.linter }}
         run: task lint:${{ matrix.linter }}

@@ -1,13 +1,10 @@
 ---
 version: "3"
 
-vars:
-  PYTHON_MIN_VERSION: 3.9
-  TASK_MIN_VERSION: 3.45.4
-  ASCIINEMA_PLAYER_VERSION: 3.11.1
+env:
+  UV_LINK_MODE: copy
 
 includes:
-  check: .taskfiles/check.yml
   lint: .taskfiles/lint.yml
   test: .taskfiles/test.yml
   update: .taskfiles/update.yml
@@ -16,48 +13,32 @@ includes:
 tasks:
   default:
     cmds:
-      - task: help
-
-  bootstrap:
-    desc: Bootstrap project
-    deps: [check:all]
-    silent: true
-    cmds:
-      - poetry install
+      - task --list
 
   clean:
     desc: Cleanup project
     silent: true
     cmds:
-      - poetry env remove --all
-      - rm -rf .mypy_cache
-      - rm -rf .pytest_cache
-      - rm -rf .ruff_cache
-      - rm -rf .task
-      - rm -rf build
-      - rm -rf dist
-      - rm -rf site
-      - rm -rf src/mkdocs_asciinema_player.egg-info
-      - rm -rf src/mkdocs_asciinema_player/__pycache__
-      - rm -rf tests/unit/__pycache__
-      - rm -rf core
+      - rm -rf .venv
 
-  reinit:
-    desc: Reinit project
+  lint:
+    desc: Run linters
     silent: true
     cmds:
-      - task: clean
-      - task: bootstrap
+      - task: lint:all
+
+  test:
+    desc: Run tests
+    silent: true
+    cmds:
+      - for: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+        task: test:pytest
+        vars:
+          PYTHON_VERSION: "{{.ITEM}}"
 
   pipeline:
     desc: Simulate run pipeline
     silent: true
     cmds:
-      - task: lint:all
-      - task: test:pytest
-
-  help:
-    desc: Display help
-    silent: true
-    cmds:
-      - task --list
+      - task: lint
+      - task: test
