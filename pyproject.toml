@@ -1,19 +1,17 @@
-[tool.poetry]
+[project]
 name = "mkdocs-asciinema-player"
 version = "0.18.0"
 description = "A Mkdocs Plugin to include asciinema player in your documentation."
-license = "MIT"
-authors = [
-  "Philippe-André De Carvalho <philippe.andre.decarvalho@gmail.com>"
-]
-maintainers = [
-  "Philippe-André De Carvalho <philippe.andre.decarvalho@gmail.com>"
-]
+authors = [{ name = "Philippe-André De Carvalho", email = "philippe.andre.decarvalho@gmail.com" }]
 readme = "README.md"
-homepage = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
-repository = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
-documentation = "https://pa-decarvalho.github.io/mkdocs-asciinema-player/"
-keywords = ["mkdocs", "documentation", "asciinema", "asciinema-player"]
+license = "MIT"
+maintainers = [{ name = "Philippe-André De Carvalho", email = "philippe.andre.decarvalho@gmail.com" }]
+keywords = [
+    "mkdocs",
+    "documentation",
+    "asciinema",
+    "asciinema-player",
+]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Environment :: Console",
@@ -23,57 +21,50 @@ classifiers = [
   "Intended Audience :: System Administrators",
   "Topic :: Software Development :: Build Tools",
   "Natural Language :: English",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Topic :: Utilities",
   "Topic :: Software Development :: Documentation",
 ]
-packages = [
-  {include = "mkdocs_asciinema_player", from = "src"},
+requires-python = ">=3.10,<4"
+dependencies = [
+  "mkdocs>=1.6.1,<2"
 ]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-mkdocs = "^1.6.1"
+[project.urls]
+homepage = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
+repository = "https://github.com/pa-decarvalho/mkdocs-asciinema-player"
+documentation = "https://pa-decarvalho.github.io/mkdocs-asciinema-player"
 
-[tool.poetry.group.dev.dependencies]
-asciinema = "^2.4.0"
-commitizen = "^4.9.1"
-requests = "^2.32.5"
-pyyaml = "^6.0.3"
-types-pyyaml = "^6.0.12.20250915"
-types-requests = "^2.32.4.20250913"
-
-[tool.poetry.group.lint.dependencies]
-bandit = "^1.8.6"
-djlint = "^1.36.4"
-mypy = "^1.18.2"
-yamllint = "^1.37.1"
-ruff = "^0.14.0"
-
-[tool.poetry.group.test.dependencies]
-pytest = "^8.4.2"
-
-[tool.poetry.group.docs.dependencies]
-mkdocs-awesome-pages-plugin = "^2.9.3"
-
-[tool.poetry.plugins."mkdocs.plugins"]
+[project.entry-points."mkdocs.plugins"]
 asciinema-player = "mkdocs_asciinema_player.plugin:AsciinemaPlayerPlugin"
 
-[tool.poetry.urls]
-"Issues" = "https://github.com/pa-decarvalho/mkdocs-asciinema-player/issues"
+[dependency-groups]
+dev = [
+  "asciinema>=2.4.0,<3",
+  "commitizen>=4.9.1,<5",
+  "requests>=2.32.5,<3",
+  "pyyaml>=6.0.3,<7",
+  "types-pyyaml>=6.0.12.20250915,<7",
+  "types-requests>=2.32.4.20250913,<3",
+  "djlint>=1.36.4,<2",
+  "yamllint>=1.37.1,<2",
+  "ruff>=0.14.0,<0.15",
+  "pytest>=8.4.2,<9",
+  "mkdocs-awesome-pages-plugin>=2.9.3,<3",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.8,<0.10.0"]
+build-backend = "uv_build"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
 tag_format = "$version"
-version_scheme = "pep440"
-version_provider = "poetry"
+version_scheme = "semver2"
+version_provider = "pep621"
 update_changelog_on_bump = true
 major_version_zero = true
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"

@@ -1,6 +1,5 @@
 FROM mcr.microsoft.com/devcontainers/python:3.12
 
-ARG TASK_VERSION=3.45.4
 ARG HADOLINT_VERSION=2.12.0
 
 USER root
@@ -12,11 +11,6 @@ RUN apt-get update -y && apt-get upgrade -y && \
     wget && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-### Task (https://taskfile.dev/)
-RUN wget -q -P /tmp https://github.com/go-task/task/releases/download/v$TASK_VERSION/task_linux_amd64.deb && \
-    dpkg -i /tmp/task_linux_amd64.deb && \
-    rm -f /tmp/task_linux_amd64.deb
 
 ### Chrome for SeleniumBase (https://seleniumbase.io/)
 RUN apt-get update -y && apt-get upgrade -y && \
@@ -31,6 +25,6 @@ RUN wget -q -P /tmp https://github.com/hadolint/hadolint/releases/download/v$HAD
     chmod +x /usr/local/bin/hadolint
 
 # hadolint ignore=DL3013
-RUN pip install --no-cache-dir --upgrade pip poetry
+RUN pip install --no-cache-dir --upgrade pip uv go-task-bin
 
 USER vscode

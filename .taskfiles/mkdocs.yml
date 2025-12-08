@@ -6,16 +6,16 @@ tasks:
     desc: Run mkdocs build command
     silent: true
     cmds:
-      - poetry run mkdocs build
+      - uv run mkdocs build
 
   serve:
     desc: Run mkdocs serve command
     silent: true
     cmds:
-      - poetry run mkdocs serve
+      - uv run mkdocs serve
 
   serve-doc-test:
     desc: Run mkdocs serve command on doc test
     silent: true
     cmds:
-      - poetry run mkdocs serve --dev-addr localhost:8001 --config-file tests/fixtures/test_doc/mkdocs_default.yml
+      - uv run mkdocs serve --dev-addr localhost:8001 --config-file tests/fixtures/test_doc/mkdocs_default.yml

@@ -6,13 +6,13 @@ tasks:
     desc: Update dependencies
     silent: true
     cmds:
-      - poetry run python .taskfiles/scripts/update_dependencies.py
+      - uv run python .taskfiles/scripts/update_dependencies.py
 
   docs:
     desc: Update docs
     silent: true
     cmds:
-      - poetry run python .taskfiles/scripts/update_docs.py
+      - uv run python .taskfiles/scripts/update_docs.py
 
   all:
     desc: Run all updates
