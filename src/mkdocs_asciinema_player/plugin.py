@@ -210,7 +210,6 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
                 self.match_id,
             )
             return ""
-        parsed_json["file_path"] = self.site_url + parsed_json["file"]
         parsed_json["match_id"] = self.match_id
         template = self.render_template(parsed_json)
         self.match_id += 1

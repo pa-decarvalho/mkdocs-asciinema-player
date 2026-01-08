@@ -9,7 +9,7 @@
             if (element && !element.hasAttribute('data-mkap-initialized')) {
                 element.setAttribute('data-mkap-initialized', 'true');
 
-                AsciinemaPlayer.create("{{ file_path }}", element, {
+                AsciinemaPlayer.create("{{ file }}", element, {
                     cols: {{ cols }},
                     rows: {{ rows }},
                     autoPlay: {{ auto_play | string | lower }},
