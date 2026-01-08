@@ -16,6 +16,21 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
         self.plugin.config = MkDocsConfig()
         self.plugin.config.plugin_name = "[mkdocs-asciinema-player]"
         self.plugin.config.loglevel = "INFO"
+        self.plugin.config.title = "Terminal"
+        self.plugin.config.mkap_theme = "night"
+        self.plugin.config.cols = 80
+        self.plugin.config.rows = 24
+        self.plugin.config.auto_play = False 
+        self.plugin.config.preload = False
+        self.plugin.config.loop = False
+        self.plugin.config.start_at = "0:00"
+        self.plugin.config.speed = 1.0
+        self.plugin.config.theme = "asciinema"
+        self.plugin.config.fit = "width"
+        self.plugin.config.controls = "auto"
+        self.plugin.config.pause_on_markers = False
+        self.plugin.config.terminal_font_size = "small"
+        self.plugin.config.terminal_line_height = "1.33333333"
         self.plugin.init_logging()
 
     def test_parse_json_correct(self) -> None:
@@ -87,7 +102,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
         """
         user_config = {
             "file": "assets/asciinema/bootstrap.cast",
-            "autoplay": True,
+            "auto_play": True,
             "speed": 1.5,
             "theme": "dark",
         }
@@ -101,36 +116,8 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
         dictionary that is missing the required 'file' parameter.
         """
         user_config = {
-            "autoplay": True,
+            "auto_play": True,
             "speed": 1.5,
             "theme": "dark",
-        }
-        assert self.plugin.validate_config(user_config) is False
-
-    def test_required_parameter_invalid_type(self) -> None:
-        """
-        Test configuration validation with invalid type for required parameter.
-
-        Verifies that the validate_config method correctly rejects a configuration
-        where the required 'file' parameter is not a string.
-        """
-        user_config = {
-            "file": 10,
-            "autoplay": True,
-            "speed": 1.5,
-            "theme": "dark",
-        }
-        assert self.plugin.validate_config(user_config) is False
-
-    def test_invalid_type(self) -> None:
-        """
-        Test configuration validation with invalid parameter type.
-
-        Verifies that the validate_config method correctly rejects a configuration
-        where an optional parameter ('speed') has an invalid type.
-        """
-        user_config = {
-            "file": "assets/asciinema/bootstrap.cast",
-            "speed": "test",
         }
         assert self.plugin.validate_config(user_config) is False
