@@ -1,3 +1,9 @@
+## 0.19.1 (2026-01-08)
+
+### Fix
+
+- ensure player loads on initial page load
+
 ## 0.19.0 (2025-12-08)
 
 ### Feat
