@@ -20,7 +20,7 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
         self.plugin.config.mkap_theme = "night"
         self.plugin.config.cols = 80
         self.plugin.config.rows = 24
-        self.plugin.config.auto_play = False 
+        self.plugin.config.auto_play = False
         self.plugin.config.preload = False
         self.plugin.config.loop = False
         self.plugin.config.start_at = "0:00"

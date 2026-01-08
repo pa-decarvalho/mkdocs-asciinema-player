@@ -13,7 +13,7 @@ import shutil
 from json import JSONDecodeError
 from pathlib import Path
 from re import Match
-from typing import Any, cast
+from typing import Any
 from urllib.parse import urlparse
 
 from jinja2 import Environment, PackageLoader
@@ -141,8 +141,8 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
         allowed_options = {
             key
-            for key in AsciinemaPlayerConfig.__dict__.keys()
-            if not key.startswith("_") and key != "plugin_name" and key != "loglevel"
+            for key in AsciinemaPlayerConfig.__dict__
+            if not key.startswith("_") and key not in ["plugin_name", "loglevel"]
         }
 
         # Merge configs: defaults < mkdocs.yml < user block
