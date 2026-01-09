@@ -30,7 +30,8 @@ class TestAsciinemaPlayerPlugin(unittest.TestCase):
         self.plugin.config.controls = "auto"
         self.plugin.config.pause_on_markers = False
         self.plugin.config.terminal_font_size = "small"
-        self.plugin.config.terminal_line_height = "1.33333333"
+        self.plugin.config.terminal_font_family = "Consolas"
+        self.plugin.config.terminal_line_height = 1.33333333
         self.plugin.init_logging()
 
     def test_parse_json_correct(self) -> None:
