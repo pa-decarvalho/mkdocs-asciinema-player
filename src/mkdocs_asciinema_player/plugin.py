@@ -29,7 +29,7 @@ from mkdocs.structure.pages import Page
 class AsciinemaPlayerConfig(Config):
     """Configuration class for the AsciinemaPlayerPlugin."""
 
-    plugin_name = "[mkdocs-asciinema-player]"
+    plugin_name = "mkdocs-asciinema-player"
     loglevel = Type(str, default="WARNING")
     title = Type(str, default="Terminal")
     mkap_theme = Type(str, default="night")
@@ -90,7 +90,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
             return json.loads(content)
         except JSONDecodeError:
             self.log.exception(
-                "%s[%s] JSONDecodeError",
+                "[%s][%s] JSONDecodeError",
                 self.config.plugin_name,
                 self.match_id,
             )
@@ -109,7 +109,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
         """
         self.log.info(
-            "%s[%s] Rendering template",
+            "[%s][%s] Rendering template",
             self.config.plugin_name,
             self.match_id,
         )
@@ -133,7 +133,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
         """
         self.log.info(
-            "%s[%s] Validating user config: %s",
+            "[%s][%s] Validating user config: %s",
             self.config.plugin_name,
             self.match_id,
             user_config,
@@ -152,7 +152,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         # Check required 'file'
         if "file" not in final_config:
             self.log.error(
-                "%s[%s] Missing required 'file' in asciinema block",
+                "[%s][%s] Missing required 'file' in asciinema block",
                 self.config.plugin_name,
                 self.match_id,
             )
@@ -164,7 +164,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
         if mkap_theme and mkap_theme not in available_themes:
             self.log.error(
-                "%s[%s] Invalid theme '%s'. Available themes: %s",
+                "[%s][%s] Invalid theme '%s'. Available themes: %s",
                 self.config.plugin_name,
                 self.match_id,
                 mkap_theme,
@@ -177,7 +177,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         user_config.update(final_config)
 
         self.log.debug(
-            "%s[%s] Final merged config: %s",
+            "[%s][%s] Final merged config: %s",
             self.config.plugin_name,
             self.match_id,
             user_config,
@@ -197,7 +197,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
         """
         self.log.info(
-            "%s[%s] Replacing asciinema-player block for match %s",
+            "[%s][%s] Replacing asciinema-player block for match %s",
             self.config.plugin_name,
             self.match_id,
             self.match_id,
@@ -205,7 +205,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         parsed_json = self.parse_json(match.group(1))
         if not self.validate_config(parsed_json) or parsed_json is None:
             self.log.info(
-                "%s[%s] Skipping replace",
+                "[%s][%s] Skipping replace",
                 self.config.plugin_name,
                 self.match_id,
             )
@@ -262,7 +262,10 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
             Files: The modified file structure after copying additional files.
 
         """
-        self.log.info("[mkdocs-asciinema-player] Adding assets files to the build")
+        self.log.info(
+            "[%s] Adding assets files to the build",
+            self.config.plugin_name,
+        )
         assets_src_dir = str(Path(__file__).parent / "assets")
         css_dest_dir = str(Path(config["site_dir"]) / "css")
         js_dest_dir = str(Path(config["site_dir"]) / "js")
@@ -312,7 +315,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         self.init_logging()
         self.site_url = urlparse(self.mkdocs_config["site_url"]).path or ""
         self.log.info(
-            "%s Adding extra_css and extra_javascript to the config",
+            "[%s] Adding extra_css and extra_javascript to the config",
             self.config.plugin_name,
         )
         config["extra_css"].append("css/terminal-player.css")
