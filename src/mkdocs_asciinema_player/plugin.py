@@ -13,7 +13,7 @@ import shutil
 from json import JSONDecodeError
 from pathlib import Path
 from re import Match
-from typing import Any, cast
+from typing import Any
 from urllib.parse import urlparse
 
 from jinja2 import Environment, PackageLoader
@@ -29,33 +29,29 @@ from mkdocs.structure.pages import Page
 class AsciinemaPlayerConfig(Config):
     """Configuration class for the AsciinemaPlayerPlugin."""
 
-    plugin_name = "[mkdocs-asciinema-player]"
-    loglevel = Type(str, default="INFO")
+    plugin_name = "mkdocs-asciinema-player"
+    loglevel = Type(str, default="WARNING")
+    title = Type(str, default="Terminal")
+    mkap_theme = Type(str, default="night")
+    cols = Type(int, default=80)
+    rows = Type(int, default=24)
+    auto_play = Type(bool, default=False)
+    preload = Type(bool, default=False)
+    loop = Type(bool, default=False)
+    start_at = Type(str, default="0:00")
+    speed = Type(float, default=1.0)
+    theme = Type(str, default="asciinema")
+    fit = Type(str, default="width")
+    controls = Type(str, default="auto")
+    pause_on_markers = Type(bool, default=False)
+    terminal_font_size = Type(str, default="small")
+    terminal_font_family = Type(str, default="Consolas")
+    terminal_line_height = Type(float, default=1.33333333)
 
 
 class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
     """Plugin for embedding Asciinema player in MkDocs."""
 
-    default_configs = {
-        "parameters": [
-            {"name": "file", "default": ""},
-            {"name": "title", "default": "Terminal"},
-            {"name": "mkap_theme", "default": "night"},
-            {"name": "cols", "default": 80},
-            {"name": "rows", "default": 24},
-            {"name": "auto_play", "default": False},
-            {"name": "preload", "default": False},
-            {"name": "loop", "default": False},
-            {"name": "start_at", "default": "0:00"},
-            {"name": "speed", "default": 1.0},
-            {"name": "theme", "default": "asciinema"},
-            {"name": "fit", "default": "width"},
-            {"name": "controls", "default": "auto"},
-            {"name": "pause_on_markers", "default": False},
-            {"name": "terminal_font_size", "default": "small"},
-            {"name": "terminal_line_height", "default": "1.33333333"},
-        ],
-    }
     loglevel_config = {
         "DEBUG": logging.DEBUG,
         "INFO": logging.INFO,
@@ -95,7 +91,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
             return json.loads(content)
         except JSONDecodeError:
             self.log.exception(
-                "%s[%s] JSONDecodeError",
+                "[%s][%s] JSONDecodeError",
                 self.config.plugin_name,
                 self.match_id,
             )
@@ -114,7 +110,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
         """
         self.log.info(
-            "%s[%s] Rendering template",
+            "[%s][%s] Rendering template",
             self.config.plugin_name,
             self.match_id,
         )
@@ -138,58 +134,55 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
         """
         self.log.info(
-            "%s[%s] Validating user config: %s",
+            "[%s][%s] Validating user config: %s",
             self.config.plugin_name,
             self.match_id,
             user_config,
         )
-        parameters = self.default_configs.get("parameters", [])
-        if "file" not in user_config:
+
+        allowed_options = {
+            key
+            for key in AsciinemaPlayerConfig.__dict__
+            if not key.startswith("_") and key not in ["plugin_name", "loglevel"]
+        }
+
+        # Merge configs: defaults < mkdocs.yml < user block
+        final_config = {key: getattr(self.config, key) for key in allowed_options}
+        final_config.update(user_config)
+
+        # Check required 'file'
+        if "file" not in final_config:
             self.log.error(
-                "%s[%s] Property 'file' not found inside user config",
+                "[%s][%s] Missing required 'file' in asciinema block",
                 self.config.plugin_name,
                 self.match_id,
             )
             return False
+
         themes_dir = Path(__file__).parent / "templates" / "themes"
         available_themes = [p.stem for p in themes_dir.glob("*.html")]
+        mkap_theme = final_config.get("mkap_theme")
 
-        for param in parameters:
-            param = cast("dict[str, Any]", param)
-            param_name = param["name"]
-            param_type = type(param["default"])
+        if mkap_theme and mkap_theme not in available_themes:
+            self.log.error(
+                "[%s][%s] Invalid theme '%s'. Available themes: %s",
+                self.config.plugin_name,
+                self.match_id,
+                mkap_theme,
+                available_themes,
+            )
+            return False
 
-            if param_name in user_config:
-                user_value = user_config[param_name]
-                if param_name == "mkap_theme":
-                    if user_value not in available_themes:
-                        self.log.error(
-                            "%s[%s] Invalid theme '%s': Available themes are %s",
-                            self.config.plugin_name,
-                            self.match_id,
-                            user_value,
-                            available_themes,
-                        )
-                        return False
-                elif not isinstance(user_value, param_type):
-                    self.log.error(
-                        "%s[%s] Parameter '%s' should be of type %s but got %s",
-                        self.config.plugin_name,
-                        self.match_id,
-                        param_name,
-                        param_type,
-                        type(user_value).__name__,
-                    )
-                    return False
-            elif "default" in param:
-                self.log.debug(
-                    "%s[%s] Setting default value '%s' for parameter '%s'",
-                    self.config.plugin_name,
-                    self.match_id,
-                    param["default"],
-                    param_name,
-                )
-                user_config[param_name] = param["default"]
+        # Update user_config in place with merged result
+        user_config.clear()
+        user_config.update(final_config)
+
+        self.log.debug(
+            "[%s][%s] Final merged config: %s",
+            self.config.plugin_name,
+            self.match_id,
+            user_config,
+        )
 
         return True
 
@@ -205,7 +198,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
 
         """
         self.log.info(
-            "%s[%s] Replacing asciinema-player block for match %s",
+            "[%s][%s] Replacing asciinema-player block for match %s",
             self.config.plugin_name,
             self.match_id,
             self.match_id,
@@ -213,12 +206,11 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         parsed_json = self.parse_json(match.group(1))
         if not self.validate_config(parsed_json) or parsed_json is None:
             self.log.info(
-                "%s[%s] Skipping replace",
+                "[%s][%s] Skipping replace",
                 self.config.plugin_name,
                 self.match_id,
             )
             return ""
-        parsed_json["file_path"] = self.site_url + parsed_json["file"]
         parsed_json["match_id"] = self.match_id
         template = self.render_template(parsed_json)
         self.match_id += 1
@@ -271,7 +263,10 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
             Files: The modified file structure after copying additional files.
 
         """
-        self.log.info("[mkdocs-asciinema-player] Adding assets files to the build")
+        self.log.info(
+            "[%s] Adding assets files to the build",
+            self.config.plugin_name,
+        )
         assets_src_dir = str(Path(__file__).parent / "assets")
         css_dest_dir = str(Path(config["site_dir"]) / "css")
         js_dest_dir = str(Path(config["site_dir"]) / "js")
@@ -321,7 +316,7 @@ class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
         self.init_logging()
         self.site_url = urlparse(self.mkdocs_config["site_url"]).path or ""
         self.log.info(
-            "%s Adding extra_css and extra_javascript to the config",
+            "[%s] Adding extra_css and extra_javascript to the config",
             self.config.plugin_name,
         )
         config["extra_css"].append("css/terminal-player.css")

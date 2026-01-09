@@ -9,7 +9,7 @@
             if (element && !element.hasAttribute('data-mkap-initialized')) {
                 element.setAttribute('data-mkap-initialized', 'true');
 
-                AsciinemaPlayer.create("{{ file_path }}", element, {
+                AsciinemaPlayer.create("{{ file }}", element, {
                     cols: {{ cols }},
                     rows: {{ rows }},
                     autoPlay: {{ auto_play | string | lower }},
@@ -23,7 +23,7 @@
                     pauseOnMarkers: {{ pause_on_markers | string | lower }},
                     terminalFontSize: "{{ terminal_font_size }}",
                     terminalFontFamily: "{{ terminal_font_family }}",
-                    terminalLineHeight: {{ terminal_line_height }},
+                    terminalLineHeight: {{ terminal_line_height | string }},
                 });
             }
         }
