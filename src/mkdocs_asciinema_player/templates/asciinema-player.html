@@ -23,7 +23,7 @@
                     pauseOnMarkers: {{ pause_on_markers | string | lower }},
                     terminalFontSize: "{{ terminal_font_size }}",
                     terminalFontFamily: "{{ terminal_font_family }}",
-                    terminalLineHeight: {{ terminal_line_height }},
+                    terminalLineHeight: {{ terminal_line_height | string }},
                 });
             }
         }

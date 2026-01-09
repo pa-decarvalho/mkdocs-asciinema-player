@@ -45,7 +45,8 @@ class AsciinemaPlayerConfig(Config):
     controls = Type(str, default="auto")
     pause_on_markers = Type(bool, default=False)
     terminal_font_size = Type(str, default="small")
-    terminal_line_height = Type(str, default="1.33333333")
+    terminal_font_family = Type(str, default="Consolas")
+    terminal_line_height = Type(float, default=1.33333333)
 
 
 class AsciinemaPlayerPlugin(BasePlugin[AsciinemaPlayerConfig]):
