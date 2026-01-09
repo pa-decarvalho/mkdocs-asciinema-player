@@ -1,3 +1,14 @@
+## 0.20.0 (2026-01-09)
+
+### Feat
+
+- add missing 'terminal_font_family' param and change 'terminal_line_height' type to be float in mkdocs config
+- refactor logging messages
+- set default loglevel to 'WARNING'
+- update asciinema-player version to 3.14.0
+- remove site_url param to use directly cast file from user input
+- update config system
+
 ## 0.19.1 (2026-01-08)
 
 ### Fix
