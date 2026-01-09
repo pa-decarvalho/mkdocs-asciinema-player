@@ -15,7 +15,7 @@ Example:
 
 ```json
 {
-    "file": "assets/asciinema/asciinema_example.cast",
+    "file": "../assets/asciinema/asciinema_example.cast",
     "mkap_theme": "{{ theme }}",
     "auto_play": true
 }
