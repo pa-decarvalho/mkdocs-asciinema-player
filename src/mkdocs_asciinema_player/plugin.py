@@ -30,7 +30,7 @@ class AsciinemaPlayerConfig(Config):
     """Configuration class for the AsciinemaPlayerPlugin."""
 
     plugin_name = "[mkdocs-asciinema-player]"
-    loglevel = Type(str, default="INFO")
+    loglevel = Type(str, default="WARNING")
     title = Type(str, default="Terminal")
     mkap_theme = Type(str, default="night")
     cols = Type(int, default=80)
