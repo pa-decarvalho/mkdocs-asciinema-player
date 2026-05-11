@@ -53,7 +53,7 @@ dev = [
   "djlint>=1.36.4,<2",
   "yamllint>=1.37.1,<2",
   "ruff>=0.14.0,<0.15",
-  "pytest>=8.4.2,<9",
+  "pytest>=8.4.2,<10",
   "mkdocs-awesome-pages-plugin>=2.9.3,<3",
 ]
 
