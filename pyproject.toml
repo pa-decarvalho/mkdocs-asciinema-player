@@ -67,4 +67,5 @@ tag_format = "$version"
 version_scheme = "semver2"
 version_provider = "pep621"
 update_changelog_on_bump = true
-major_version_zero = true
+major_version_zero = false
+breaking_change_exclamation_in_title = true
