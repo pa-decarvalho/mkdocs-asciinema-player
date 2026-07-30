@@ -1,0 +1,6 @@
+[tools]
+uv = "latest"
+"aqua:go-task/task" = "latest"
+
+[env]
+_.file = ".env"
